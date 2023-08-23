@@ -1,0 +1,12 @@
+@import "../../variables";
+.button {
+  background-color: rgba($green, 1);
+
+  transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+  font-weight: 700;
+
+  &:hover {
+    background-color: rgba($green, 0.7);
+  }
+}

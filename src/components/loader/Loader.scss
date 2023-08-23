@@ -1,0 +1,30 @@
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  33% {
+    scale: 1.1;
+  }
+  66% {
+    scale: 0.9;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+
+  .loading-logo {
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 2rem;
+    animation: spin 2s linear infinite;
+  }
+}

@@ -1,0 +1,19 @@
+@import "../../variables";
+
+.error {
+  height: 75vh;
+  h2 {
+    background: rgba($main, 1);
+    transition: all 0.25s ease-in-out;
+    &:hover {
+      // opacity: 0.5;
+      color: #ffffffdd;
+      background: rgba($main, 0.5);
+    }
+  }
+}
+
+.error img {
+  max-width: 80%; /* Make sure the image scales with smaller screens */
+  max-height: 80%; /* Make sure the image scales with smaller screens */
+}

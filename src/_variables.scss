@@ -1,0 +1,53 @@
+// Variables and mixins
+
+//Viewports
+//lower - Bootstrap (none)
+$breakpoint-extra-small: 576px; // Bootstrap SM
+$breakpoint-small: 768px; // Bootstrap MD
+$breakpoint-medium: 992px; // Bootstrap LG
+$breakpoint-large: 1200px; // Bootstrap XL
+
+@mixin responsive($property, $values) {
+  @media (max-width: #{$breakpoint-extra-small}) {
+    #{$property}: map-get($values, mobile-small);
+  }
+  @media (min-width: $breakpoint-extra-small) and (max-width: #{$breakpoint-small - 1}) {
+    #{$property}: map-get($values, mobile);
+  }
+  @media (min-width: $breakpoint-small) and (max-width: #{$breakpoint-medium - 1}) {
+    #{$property}: map-get($values, tablet);
+  }
+  @media (min-width: $breakpoint-medium) and (max-width: #{$breakpoint-large - 1}) {
+    #{$property}: map-get($values, tablet-large);
+  }
+  @media (min-width: $breakpoint-large) {
+    #{$property}: map-get($values, desktop);
+  }
+}
+//e.g of how to use above - don't have to use all [most of the time you can skip 'desktop' as it will be default
+.example-element {
+  @include responsive(
+    text-align,
+    (
+      mobile-small: left,
+      //none
+      mobile: right,
+      //sm
+      tablet: center,
+      //md
+      tablet-large: inherit,
+      //lg
+      desktop: center,
+      //xl
+    )
+  );
+  /* Other styles for the element */
+}
+
+//Color pallet:
+$white: #fff;
+$green: #25f892;
+$main: #ff6b6c;
+$secondary: #a156f0;
+
+$blue: #496bc1;
