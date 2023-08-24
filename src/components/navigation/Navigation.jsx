@@ -23,8 +23,8 @@ const Navigation = () => {
         <div className="features d-flex gap-5">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/calculator">Calculator</NavLink>
-          <NavLink to="/">Info</NavLink>
-          <NavLink to="/">Recipes</NavLink>
+          <NavLink to="/info">Info</NavLink>
+          <NavLink to="/recipes">Recipes</NavLink>
         </div>
         <div className="sign d-flex gap-2">
           <button className="sign-in  border-0 rounded-pill px-3">

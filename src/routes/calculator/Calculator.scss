@@ -3,16 +3,34 @@
 .calculator {
   width: 80%;
 
+  .custom-range {
+    width: 100%; /* Set the width of the slider */
+    height: 1em; /* Set the height of the slider */
+    background: white; /* Set the background color of the track */
+    border-radius: 5px; /* Set the border radius for rounded edges */
+    &::-webkit-slider-thumb {
+      width: 1.5em;
+      height: 1.5em;
+      background: $green;
+      border-radius: 29px 200px 33px 195px;
+      -webkit-border-radius: 29px 200px 33px 195px;
+      -moz-border-radius: 29px 200px 33px 195px;
+    }
+    &::-webkit-slider-runnable-track {
+      height: 1em;
+    }
+  }
+  form {
+    height: 70vh;
+  }
+
   .radio-inputs {
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    border-radius: 0.5rem;
+    border-radius: 0.5em;
     background-color: #eee;
-    box-sizing: border-box;
-    padding: 0.25rem;
-    width: 300px;
-    font-size: 14px;
+    padding: 0.25em;
 
     .radio {
       flex: 1 1 auto;
@@ -29,13 +47,21 @@
       .name {
         display: flex;
         cursor: pointer;
-        align-items: center;
         justify-content: center;
         border-radius: 0.5em;
-        border: none;
         padding: 0.5em 0;
-        color: rgba(51, 65, 85, 1);
         transition: all 0.15s ease-in-out;
+        &.sex {
+          background: $main;
+          position: absolute;
+          top: 0;
+          width: 30%;
+          height: 100%;
+          border-radius: 0 0.5em 0.5em 0;
+          margin-left: 0.1em;
+          line-height: 2;
+          cursor: default;
+        }
       }
     }
   }

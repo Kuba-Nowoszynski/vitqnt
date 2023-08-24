@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "../../components/button/Button";
 import "./Calculator.scss";
 
 const Calculator = () => {
@@ -31,12 +32,15 @@ const Calculator = () => {
   };
   return (
     <div className="calculator mx-auto">
-      <h1>CALCULATOR</h1>
+      <h1 className="text-center pb-4">CALCULATOR</h1>
       <div className="row p-0 g-0">
-        <form className="col-12 col-md-6   " onSubmit={handleSubmit}>
-          <div className="form-floating">
+        <form
+          className="col-12 col-md-6   d-flex flex-column justify-content-evenly "
+          onSubmit={handleSubmit}
+        >
+          <div className="form-floating ">
             <select
-              className="form-select"
+              className="form-select "
               id="vitamin-select"
               aria-label="Choose your vitamin"
               name="vitamin"
@@ -47,29 +51,29 @@ const Calculator = () => {
               <option value="b">Vitamin B</option>
               <option value="c">Vitamin C</option>
             </select>
-            <label htmlFor="vitamin-select">Choose your vitamin</label>
+            <label htmlFor="vitamin-select ">Choose your vitamin</label>
           </div>
-          <label htmlFor="age" className="form-label">
+          <label htmlFor="age" className="form-label text-center d-block">
             Age: {formData.age}
           </label>
           <div className="d-flex justify-content-evenly">
-            {Array.from({ length: 5 }, (_, index) => (
-              <span key={index}>{(index + 1) * 15}</span>
+            {Array.from({ length: 6 }, (_, index) => (
+              <span key={index}>{(index + 1) * 10}</span>
             ))}
           </div>
 
           <input
             type="range"
-            className="form-range"
+            className="form-range custom-range"
             min="1"
-            max="99"
+            max="70"
             step="1"
             id="age"
             name="age"
             value={formData.age}
             onChange={handleInputChange}
           />
-          <div className="radio-inputs">
+          <div className="radio-inputs my-3">
             <label className="radio">
               <input
                 type="radio"
@@ -98,15 +102,10 @@ const Calculator = () => {
                 disabled
                 checked={formData.gender === "sex"}
               />
-              <span className="name">Sex</span>
+              <span className="name sex">Sex</span>
             </label>
           </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-          <p>Selected Vitamin: {formData.vitamin}</p>
-          <p>Selected Gender: {formData.gender}</p>
-          <p>Selected Age: {formData.age}</p>
+          <Button text="Submit" className="d-block mx-auto" />
         </form>
         <div className="col-12 col-md-6 px-5">
           <p className="text-warning fw-bold fs-1">{score || "Mockup"}</p>
