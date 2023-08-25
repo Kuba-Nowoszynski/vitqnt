@@ -30,12 +30,13 @@ const Calculator = () => {
         vitamin.toUpperCase()
     );
   };
+
   return (
     <div className="calculator mx-auto">
-      <h1 className="text-center pb-4">CALCULATOR</h1>
+      <h1 className="text-center py-4">CALCULATOR</h1>
       <div className="row p-0 g-0">
         <form
-          className="col-12 col-md-6   d-flex flex-column justify-content-evenly "
+          className="col-12 col-md-6  d-flex flex-column justify-content-evenly "
           onSubmit={handleSubmit}
         >
           <div className="form-floating ">

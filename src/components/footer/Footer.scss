@@ -1,0 +1,46 @@
+@import "../../variables";
+
+.footer {
+  background: transparent;
+  box-shadow: 0 50px 100px 10px white; //change to em
+  img {
+    max-width: 6rem;
+  }
+  .links {
+    @include responsive(
+      //allows to flex the links (initial width is not 100)
+      width,
+      (
+        mobile-small: 100%,
+        mobile: 100%,
+        tablet: 100%,
+      )
+    );
+    a {
+      font-size: 1.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -0.5em;
+        left: 30%;
+        width: 50%;
+        height: 0.3em;
+        background-color: black;
+        border-radius: 3em;
+        display: block;
+
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+      }
+      &:hover {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

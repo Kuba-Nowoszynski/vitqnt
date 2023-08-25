@@ -10,8 +10,4 @@ information and get daily intake recommendations.
 "Recipes": This link is optional and would lead to the section with recipe recommendations if the feature is implemented.
 
 
-https://getwaves.io/
-
-https://www.blobmaker.app/
-
-https://www.softr.io/tools/svg-shape-generator
+!!!!ADD ALTS!!!!

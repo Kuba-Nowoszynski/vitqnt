@@ -6,9 +6,8 @@
     background: rgba($main, 1);
     transition: all 0.25s ease-in-out;
     &:hover {
-      // opacity: 0.5;
-      color: #ffffffdd;
-      background: rgba($main, 0.5);
+      color: #dad5d5cc;
+      box-shadow: 0 0 10px 1px rgba(white, 0.3);
     }
   }
 }

@@ -1,10 +1,12 @@
 import { Outlet } from "react-router";
 import { NavLink } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import logo from "../../assets/logo.png";
-import Button from "../button/Button";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
+import Button from "../button/Button";
+import Footer from "../footer/Footer";
+
+import logo from "../../assets/logo.png";
 import "./Navigation.scss";
 const Navigation = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -18,6 +20,7 @@ const Navigation = () => {
       {/* Desktop view */}
       <div className="desktop-navigation pt-4 px-5 d-none d-md-flex justify-content-around align-items-center">
         <NavLink to="http://localhost:5173/" className="logo">
+          {/* change it in styles or the link after deploy - the point is not to have it underscored */}
           <img className="" src={logo} alt="logo" />
         </NavLink>{" "}
         <div className="features d-flex gap-5">
@@ -65,6 +68,7 @@ const Navigation = () => {
         </div>
       </div>
       <Outlet />
+      <Footer />
     </div>
   );
 };
