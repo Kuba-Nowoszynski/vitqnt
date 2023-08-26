@@ -1,0 +1,56 @@
+@import "../../variables";
+
+.tile {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin: 1em 2em;
+  background: $main;
+  &:hover {
+    scale: 1.05;
+    box-shadow: 0 0 50px 1px white;
+  }
+  img {
+    max-width: 40%;
+    max-height: 90%;
+  }
+  .tile-header {
+    color: white;
+    font-size: 2em;
+  }
+  .close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+  }
+  .tile-content {
+    display: none;
+    color: white;
+  }
+
+  &.expanded {
+    position: fixed;
+    background: rgba($green, 0.7);
+    top: 50%;
+    left: 50%;
+    cursor: default;
+    transform: translate(-60%, -50%) scale(2);
+    z-index: 9999;
+
+    //ensure that the expanded tile is center on each viewport
+    @include responsive(
+      transform,
+      (
+        mobile-small: translate(-60%, -50%) scale(1.1),
+        mobile: translate(-55%, -50%) scale(1.1),
+        tablet: translate(-55%, -50%) scale(1.1),
+      )
+    );
+    .tile-content {
+      display: block;
+    }
+  }
+}

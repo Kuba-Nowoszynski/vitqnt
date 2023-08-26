@@ -1,0 +1,12 @@
+@import "../../variables";
+
+.info {
+  h1 {
+    font-weight: 700;
+    color: black;
+  }
+  width: 90%;
+  background: rgba($main, 0.3);
+
+  position: relative;
+}

@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import Button from "../button/Button";
-import Footer from "../footer/Footer";
+import Button from "../../components/button/Button";
+import Footer from "../../components/footer/Footer";
 
 import logo from "../../assets/logo.png";
 import "./Navigation.scss";

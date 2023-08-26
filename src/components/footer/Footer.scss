@@ -44,3 +44,40 @@
     }
   }
 }
+
+.social-icons {
+  a {
+    position: relative;
+    border-radius: 50%;
+    background: black;
+    display: grid;
+    place-items: center;
+    width: 3em;
+    height: 3em;
+    transition: all 0.25s ease-in-out;
+    &::before {
+      content: "";
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      scale: 0;
+      transition: all 0.25s ease-in-out;
+    }
+    &:hover {
+      img {
+        filter: invert(100%);
+      }
+      &::before {
+        scale: 1;
+      }
+    }
+
+    & img {
+      width: 50%;
+      transition: all 0.5s ease-out;
+    }
+  }
+}

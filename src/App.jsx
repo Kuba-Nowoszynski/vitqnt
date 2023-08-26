@@ -1,29 +1,25 @@
 import { Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
 
-import { useState } from "react";
-import Navigation from "./components/Navigation/Navigation";
 import Loader from "./components/loader/Loader";
-import Error from "./routes/error/Error";
-import Home from "./routes/home/Home";
-import Calculator from "./routes/calculator/Calculator";
+const Navigation = lazy(() => import("./routes/navigation/Navigation"));
+const Home = lazy(() => import("./routes/home/Home"));
+const Calculator = lazy(() => import("./routes/calculator/Calculator"));
+const Info = lazy(() => import("./routes/info/Info"));
+const Error = lazy(() => import("./routes/error/Error"));
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
-
   return (
-    <div className="container-fluid g-0 p-0 m-0">
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <Routes>
-          <Route path="/" element={<Navigation />}>
-            <Route index element={<Home />} />
-            <Route path="calculator" element={<Calculator />} />
-            <Route path="*" element={<Error />} />
-          </Route>
-        </Routes>
-      )}
-    </div>
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path="/" element={<Navigation />}>
+          <Route index element={<Home />} />
+          <Route path="calculator" element={<Calculator />} />
+          <Route path="info" element={<Info />} />
+          <Route path="*" element={<Error />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 
