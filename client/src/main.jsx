@@ -4,6 +4,7 @@ import { ErrorBoundary } from "react-error-boundary";
 
 import App from "./App.jsx";
 import Error from "./routes/error/Error.jsx";
+import { UserContextProvider } from "./contexts/UserContext.jsx";
 import ReactDOM from "react-dom/client";
 
 import "./index.scss";
@@ -17,8 +18,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ErrorBoundary fallback={<Error />}>
-      <RouterProvider router={router}></RouterProvider>
-    </ErrorBoundary>
+    <UserContextProvider>
+      {" "}
+      <ErrorBoundary fallback={<Error />}>
+        <RouterProvider router={router}></RouterProvider>
+      </ErrorBoundary>
+    </UserContextProvider>
   </StrictMode>
 );

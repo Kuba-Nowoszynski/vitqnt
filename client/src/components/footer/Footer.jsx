@@ -13,7 +13,7 @@ const Footer = () => {
         <img className="" src={logo} alt="logo" />
       </NavLink>{" "}
       <div className="links d-block d-flex gap-0 gap-lg-5 justify-content-evenly py-3 ">
-        <NavLink classNameto="/">Home</NavLink>
+        <NavLink to="/">Home</NavLink>
         <NavLink to="/calculator">Calculator</NavLink>
         <NavLink to="/info">Info</NavLink>
         <NavLink to="/recipes">Recipes</NavLink>

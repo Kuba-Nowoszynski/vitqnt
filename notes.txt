@@ -1,13 +1,11 @@
-"Home": Takes users to the landing page with a brief introduction.
-
-"Calculator": Leads to the section where users can input their 
-information and get daily intake recommendations.
-
-"Nutrient Information": Navigates users to the section with detailed information about vitamins and micronutrients.
-
-"Dietary Analysis": Links to the section where users can analyze their diet for potential deficiencies.
-
-"Recipes": This link is optional and would lead to the section with recipe recommendations if the feature is implemented.
+1. Add Profile tab
+2. Add loader for signing in/up(maybe verification) and show successful, then afterwards navigate to a user page OR show incorrect password/username
+3. Show error message depending on error eg. token expired - sign up again
 
 
-!!!!ADD ALTS!!!!
+x. add recipes and suggested food for vitamin
+x2. handle sign-in/up validation eg. min password, max name, email/name already exists
+x3. replace ALL localhost urls
+x4. go through all comments - especially on frontend and change logs to messages to user - make separate branch for production (keep console.log and other stuff) and deployment
+=====
+save user data, extend current user model to keep age, gender and so on

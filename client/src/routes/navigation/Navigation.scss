@@ -1,5 +1,13 @@
 @import "../../variables";
 
+.container-fluid {
+  //assure that footer will be always displayed on the bottom of the screen
+  min-height: 100vh;
+  .main-content {
+    flex: 1;
+  }
+}
+
 .desktop-navigation {
   font-size: 1.2em;
   .active {
@@ -99,6 +107,7 @@
       position: absolute;
       width: 100%;
       top: -100%;
+      background: white;
       border-radius: 1em;
       box-shadow: 0px 0.5em 1em 0px rgba(0, 0, 0, 0.2);
       z-index: 1;

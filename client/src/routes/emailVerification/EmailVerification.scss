@@ -1,0 +1,16 @@
+@import "../../variables";
+.email-verified {
+  // width: 40%;
+  height: 50vh;
+  background: $pastel-blue;
+  box-shadow: 0 0 10px 1px $secondary;
+
+  img {
+    object-fit: fill;
+    max-width: 15em;
+  }
+  h1 {
+    color: #1cbb7d;
+    text-shadow: 0 0 1px $green;
+  }
+}
