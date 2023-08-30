@@ -55,7 +55,7 @@ const Navigation = () => {
               >
                 Sign Out
               </button>
-              <Button text={user.name} onClick={() => navigate("/sign-up")} />
+              <Button text={"Profile"} onClick={() => navigate("/profile")} />
             </>
           ) : (
             <>

@@ -26,7 +26,7 @@ const EmailVerification = () => {
     const secondTimer = setTimeout(() => {
       navigate("/");
       window.location.reload(); // make sure that the changes from UserContext are applied
-    }, 1000 + 700); // 1000ms for the first timer + delay
+    }, 1000 + 600); // 1000ms for the first timer + delay
 
     return () => {
       clearTimeout(firstTimer);
@@ -51,6 +51,7 @@ const EmailVerification = () => {
           setIsVerified(true);
           startTimers();
         } catch (error) {
+          console.log(error);
           console.error("Error verifying email:", error);
           navigate("/error");
         }

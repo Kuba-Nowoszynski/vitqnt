@@ -1,5 +1,6 @@
 @import "../../variables";
 .sign-up-component {
+  position: relative;
 }
 .form-box {
   min-width: 50%;
@@ -88,6 +89,9 @@
       &:hover {
         background-color: rgba($secondary, 0.9);
       }
+      &[disabled] {
+        cursor: not-allowed;
+      }
     }
   }
   .form-section {
@@ -107,7 +111,6 @@
 }
 
 .verify-email {
-  min-width: 50%;
   min-height: 50vh;
   background: $pastel-blue;
   overflow: hidden;
@@ -116,7 +119,14 @@
     max-width: 15em;
   }
   h1 {
-    font-size: 2em;
     color: $blue;
+
+    font-size: 2em;
+    @include responsive(
+      font-size,
+      (
+        mobile-small: 1.5em,
+      )
+    );
   }
 }

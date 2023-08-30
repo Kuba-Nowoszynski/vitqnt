@@ -1,0 +1,150 @@
+@import "../../variables";
+
+.profile {
+  overflow: hidden;
+  background: $green;
+  position: relative;
+  box-shadow: 0 0 10px 1px rgba(black, 0.21);
+  h1 {
+    font-weight: 600;
+    font-size: 2em;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+  .user-data {
+    position: relative;
+    min-width: 70%;
+    gap: 1em;
+    .labels {
+      label {
+        padding: 1em;
+        border-radius: 1em;
+        box-shadow: 0 0 10px 1px rgba($secondary, 0.7);
+        font-weight: 600;
+      }
+    }
+    .form-container {
+      overflow: hidden; // make the container "pill" shape
+      background-color: #fff;
+
+      input {
+        border: 0;
+        outline: 0;
+        width: 100%;
+        border-bottom: 1px solid #eee;
+        font-size: 1.1em;
+        padding: 1.5em;
+        text-align: center;
+        &[type="email"] {
+          background: rgba($green, 0.6);
+        }
+        //remove and disable arrows
+        &[type="number"] {
+          &[disabled] {
+            /* Styles for the disabled input */
+          }
+
+          &::-webkit-inner-spin-button,
+          &::-webkit-outer-spin-button {
+            /* Styles for the up/down arrows */
+            -webkit-appearance: none;
+            appearance: none;
+          }
+
+          &[type="number"] {
+            /* Styles for non-WebKit browsers */
+            -moz-appearance: textfield;
+
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+              /* Styles for non-WebKit up/down arrows */
+              -webkit-appearance: none;
+              appearance: none;
+            }
+          }
+        }
+      }
+      .radio-inputs {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 0.5em;
+        background-color: #eee;
+        padding: 0.25em;
+
+        .radio {
+          flex: 1 1 auto;
+          text-align: center;
+          input {
+            display: none;
+            &:checked ~ .name {
+              background-color: rgba($green, 0.6);
+              font-weight: 600;
+            }
+          }
+
+          .name {
+            display: flex;
+            cursor: pointer;
+            justify-content: center;
+            border-radius: 0.5em;
+            padding: 0.5em 0;
+            transition: all 0.15s ease-in-out;
+            &.sex {
+              background: $main;
+              position: absolute;
+              top: 0;
+              width: 30%;
+              height: 100%;
+              border-radius: 0 0.5em 0.5em 0;
+              margin-left: 0.1em;
+              line-height: 2;
+              cursor: default;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  button {
+    background-color: rgba($secondary, 0.85);
+    color: rgba(white, 0.8);
+    border: 0;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    &:hover {
+      background-color: rgba($secondary, 1);
+      color: white;
+      scale: 1.02;
+    }
+    &[disabled] {
+      cursor: not-allowed;
+      color: rgba(white, 0.6);
+      background-color: rgba($secondary, 0.6);
+    }
+  }
+
+  .intake {
+    background: rgba($secondary, 0.9);
+    box-shadow: 0 0 10px 1px $main;
+    h2 {
+      color: white;
+    }
+    .vitamin-list {
+      gap: 1em;
+      div {
+        background: rgba($main, 0.6);
+        padding: 1.5em 2em;
+        border-radius: 50%;
+        &.flash {
+          background: rgba(white, 0.3);
+        }
+      }
+    }
+  }
+}

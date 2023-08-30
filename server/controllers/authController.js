@@ -17,6 +17,7 @@ exports.signup = async (req, res) => {
 
     // Validation and hashing logic here
     const hashedPassword = await hashPassword(req.body.password);
+
     const user = new User({
       name: req.body.name,
       email: req.body.email,

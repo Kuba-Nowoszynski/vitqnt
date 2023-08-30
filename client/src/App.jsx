@@ -11,6 +11,7 @@ const SignIn = lazy(() => import("./routes/signIn/SignIn"));
 const EmailVerification = lazy(() =>
   import("./routes/emailVerification/EmailVerification")
 );
+const Profile = lazy(() => import("./routes/profile/Profile"));
 const Error = lazy(() => import("./routes/error/Error"));
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="sign-up" element={<SignUp />} />
           <Route path="sign-in" element={<SignIn />} />
           <Route path="verify-email" element={<EmailVerification />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>

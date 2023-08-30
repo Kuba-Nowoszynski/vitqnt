@@ -14,9 +14,9 @@ export const UserContextProvider = ({ children }) => {
         const response = await axios.get("http://localhost:3000/api/getuser", {
           withCredentials: true,
         });
-        const { name, email } = response.data;
+        const { name, email, sex, age, vitaminIntake } = response.data;
         console.log(name);
-        setUser({ name, email });
+        setUser({ name, email, sex, age, vitaminIntake });
       } catch (error) {
         // console.error("Failed to get user data:", error);
       }
