@@ -131,3 +131,23 @@ exports.signout = (req, res) => {
   // Send response
   res.json({ message: "Logged out" });
 };
+
+exports.updateProfile = async (req, res) => {
+  try {
+    const { name, age, sex, email } = req.body;
+    const user = await User.findByIdAndUpdate(
+      req.userId,
+      { $set: { name, age, sex } },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({ user });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).json({ message: "An error occurred" });
+  }
+};

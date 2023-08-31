@@ -7,6 +7,7 @@ export const UserContext = createContext({ user: { name: "" } });
 
 export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     const getUserData = async () => {
@@ -15,17 +16,19 @@ export const UserContextProvider = ({ children }) => {
           withCredentials: true,
         });
         const { name, email, sex, age, vitaminIntake } = response.data;
-        console.log(name);
         setUser({ name, email, sex, age, vitaminIntake });
+        setLoading(false); // Set loading to false once user data is fetched
+        console.log(name);
       } catch (error) {
         // console.error("Failed to get user data:", error);
+        setLoading(false); // Set loading to false on error as well
       }
     };
 
     getUserData();
   }, []);
 
-  const value = { user, setUser };
+  const value = { user, setUser, loading };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

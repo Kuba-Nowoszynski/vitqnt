@@ -1,8 +1,8 @@
-0. update user data from profile
-1. Make signin validation. and prevent from post api signup
-2. Set users details by default in calculator + fix age range. 
+0. add age to signup form
+1. Make signin validation. 
 3. Write algorithm for all vitamins.
 4. Fix expand info and add info about every vitamin
+5. add pregnant option to female - calculator
 
 
 x. add recipes and suggested food for vitamin
@@ -12,5 +12,6 @@ x4. go through all comments - especially on frontend and change logs to messages
 x5. Show error message depending on error eg. token expired - sign up again
 x6. Don't allow to sign in if email is not verified
 x7. set default error page with 3/4 tiles instead of 404
+x8. prevent from post api signup and if email exists
 =====
 save user data, extend current user model to keep age, gender and so on

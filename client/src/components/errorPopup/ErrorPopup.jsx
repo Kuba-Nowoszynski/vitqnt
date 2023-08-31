@@ -10,7 +10,7 @@ const ErrorPopup = ({ message }) => {
     // Set timeout to change class after 1 second
     const timeoutId = setTimeout(() => {
       setPopupClass("animate__fadeOutDown");
-    }, 1000);
+    }, 1100);
 
     return () => clearTimeout(timeoutId); // Clear timeout on unmount or re-render
   }, []);
