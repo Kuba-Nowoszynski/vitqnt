@@ -21,17 +21,26 @@ const SignUp = () => {
     name: "",
     email: "",
     password: "",
+    age: "",
   });
   const [isAnimated, setIsAnimated] = useState(false);
   const [isCreated, setIsCreated] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, loading } = useContext(UserContext);
+  //redirect user if signed in
 
-  //redirect user if signed in- show "you are already signed in"  and redirect to /profile
   useEffect(() => {
-    if (user) {
+    if (!loading && user) {
       navigate("/");
     }
-  }, [user, navigate]);
+  }, [user, navigate, loading]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const validateForm = () => {
     const nameIsValid =
@@ -42,30 +51,29 @@ const SignUp = () => {
     const passwordIsValid = /^(?=.*[A-Z])(?=.*[!@#$&*]).{8,}$/.test(
       formData.password
     );
+    const ageIsValid = formData.age >= 0 && formData.age <= 90;
 
-    setIsFormValid(nameIsValid && emailIsValid && passwordIsValid);
+    setIsFormValid(
+      nameIsValid && emailIsValid && passwordIsValid && ageIsValid
+    );
     if (!nameIsValid) {
-      setValidationError("Name should be alphabetic, max 50 characters.");
+      setValidationError("Name should be alphabetic, max 50 characters");
     } else if (!emailIsValid) {
-      setValidationError("Email is not valid.");
+      setValidationError("Email is not valid");
     } else if (!passwordIsValid) {
       setValidationError(
-        "Password must have 8 chars, one uppercase, and one special char."
+        "Password must be 8+ characters long, with 1 uppercase and 1 special character"
       );
+    } else if (!ageIsValid) {
+      setValidationError("Age must be between 0 and 90");
     } else {
       setValidationError("");
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-    // Validate the form data here
+  useEffect(() => {
     validateForm();
-  };
+  }, [formData]);
 
   const handleSignup = async (e) => {
     if (!hasRun && !isDisabled) {
@@ -93,13 +101,14 @@ const SignUp = () => {
       } else {
         // Check if any of the input fields are empty
         if (!formData.name.trim()) {
-          setValidationError("Name cannot be empty.");
+          setValidationError("Name cannot be empty");
         } else if (!formData.email.trim()) {
-          setValidationError("Email cannot be empty.");
+          setValidationError("Email cannot be empty");
         } else if (!formData.password.trim()) {
-          setValidationError("Password cannot be empty.");
+          setValidationError("Password cannot be empty");
+        } else if (!formData.age.trim()) {
+          setValidationError("Age cannot be empty");
         }
-        console.log("invalid");
 
         setShowErrorPopup(true); // Show error popup when form is not valid
         setIsDisabled(true); //prevent from clicking button
@@ -117,67 +126,85 @@ const SignUp = () => {
   };
 
   return (
-    <div className="sign-up-component d-flex justify-content-center align-items-center ">
-      {!isCreated && (
-        <div
-          className={`form-box mx-auto  rounded-4 my-3 ${
-            isAnimated && "animate__animated animate__fadeOut"
-          }`}
-        >
-          <form className="form mx-auto py-4 px-4 text-center d-flex flex-column  gap-3  ">
-            <span className="title">Sign up</span>
-            <span className="subtitle">
-              Create a free account with your email
-            </span>
-            <div className="form-container d-flex flex-column flex-sm-row rounded-5 my-3">
-              <input
-                type="text"
-                placeholder="Full Name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-              />
-            </div>
-            <button
-              className=" mx-auto py-3 px-5 rounded"
-              onClick={handleSignup}
-              disabled={isDisabled}
+    <>
+      {!loading && !user && (
+        <div className="sign-up-component d-flex justify-content-center align-items-center ">
+          {!isCreated && (
+            <div
+              className={`form-box mx-auto  rounded-4 my-3 ${
+                isAnimated && "animate__animated animate__fadeOut"
+              }`}
             >
-              Sign up
-            </button>
-          </form>
-          <div className="form-section text-center p-4">
-            <p className="py-2">
-              Have an account? <NavLink to="/sign-in">Log in</NavLink>
-            </p>
-          </div>
+              <form className="form mx-auto py-4 px-4 text-center d-flex flex-column  gap-3  ">
+                <span className="title">Sign up</span>
+                <span className="subtitle">
+                  Create a free account with your email
+                </span>
+                <div className="form-container d-flex flex-column flex-sm-row rounded-5 my-3">
+                  <input
+                    type="text"
+                    placeholder="Full Name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                  <input
+                    type="number"
+                    placeholder="Age"
+                    name="age"
+                    value={formData.age}
+                    onChange={handleChange}
+                    min={0}
+                    max={90}
+                    required
+                  />
+                </div>
+
+                <button
+                  className=" mx-auto py-3 px-5 rounded"
+                  onClick={handleSignup}
+                  disabled={isDisabled}
+                >
+                  Sign up
+                </button>
+              </form>
+              <div className="form-section text-center p-4">
+                <p className="py-2">
+                  Have an account? <NavLink to="/sign-in">Log in</NavLink>
+                </p>
+              </div>
+            </div>
+          )}
+          {isCreated && (
+            <div className="verify-email animate__animated animate__fadeIn mx-auto my-3 py-3 col-11 col-md-6 col-lg-5   d-flex flex-column justify-content-evenly align-items-center  rounded-5 text-center">
+              <img src={emailImg} alt="Verify Email" />
+              <h1 className="mt-2">
+                Account created. <br />
+                Please verify your email.
+              </h1>
+            </div>
+          )}
+          {showErrorPopup && <ErrorPopup message={validationError} />}
         </div>
       )}
-      {isCreated && (
-        <div className="verify-email animate__animated animate__fadeIn mx-auto my-3 py-3 col-11 col-md-6 col-lg-5   d-flex flex-column justify-content-evenly align-items-center  rounded-5 text-center">
-          <img src={emailImg} alt="Verify Email" />
-          <h1 className="mt-2">
-            Account created. <br />
-            Please verify your email.
-          </h1>
-        </div>
-      )}
-      {showErrorPopup && <ErrorPopup message={validationError} />}
-    </div>
+    </>
   );
 };
 

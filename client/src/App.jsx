@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
-
+import Error from "./routes/error/Error";
 import Loader from "./components/loader/Loader";
+
 const Navigation = lazy(() => import("./routes/navigation/Navigation"));
 const Home = lazy(() => import("./routes/home/Home"));
 const Calculator = lazy(() => import("./routes/calculator/Calculator"));
@@ -12,7 +13,6 @@ const EmailVerification = lazy(() =>
   import("./routes/emailVerification/EmailVerification")
 );
 const Profile = lazy(() => import("./routes/profile/Profile"));
-const Error = lazy(() => import("./routes/error/Error"));
 
 function App() {
   return (

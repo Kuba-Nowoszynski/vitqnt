@@ -75,6 +75,31 @@
             mobile-small: 0,
           )
         );
+        //remove and disable arrows
+        &[type="number"] {
+          &[disabled] {
+            /* Styles for the disabled input */
+          }
+
+          &::-webkit-inner-spin-button,
+          &::-webkit-outer-spin-button {
+            /* Styles for the up/down arrows */
+            -webkit-appearance: none;
+            appearance: none;
+          }
+
+          &[type="number"] {
+            /* Styles for non-WebKit browsers */
+            -moz-appearance: textfield;
+
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+              /* Styles for non-WebKit up/down arrows */
+              -webkit-appearance: none;
+              appearance: none;
+            }
+          }
+        }
       }
     }
     button {

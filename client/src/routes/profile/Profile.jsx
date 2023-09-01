@@ -48,7 +48,6 @@ const Profile = () => {
 
     setIsFormValid(nameIsValid && ageIsValid && nameIsNotTooLong);
 
-    // Update validation error message based on validation rules
     if (!nameIsValid) {
       setValidationError(
         "Name cannot be empty and must only contain letters and spaces"
@@ -126,9 +125,7 @@ const Profile = () => {
 
   return (
     <>
-      {loading ? (
-        <Loader />
-      ) : (
+      {!loading && user && (
         <div className="profile col-11 col-md-7 mx-auto my-3 py-2 d-flex flex-column align-items-center justify-content-around rounded-5">
           <h1 className="py-1">Your Profile</h1>
           <div className="intake col-10 text-center py-3 my-5 rounded">
@@ -144,8 +141,13 @@ const Profile = () => {
                       : ""
                   }`}
                 >
-                  <h5 className="pe-2">{vitamin.name}</h5>
-                  <span className="ps-2">300 μg</span>
+                  <h5 className="pe-2">
+                    Vitamin {vitamin.name[0].toUpperCase()}
+                    {vitamin.name.length > 1 && (
+                      <sub>{vitamin.name.slice(1)}</sub>
+                    )}
+                  </h5>
+                  <span className="ps-2">{vitamin.amount}</span>
                 </div>
               ))}
             </div>
@@ -221,7 +223,7 @@ const Profile = () => {
             Save Changes
           </button>
         </div>
-      )}{" "}
+      )}
     </>
   );
 };

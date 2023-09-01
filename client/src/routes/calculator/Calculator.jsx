@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import Loader from "../../components/loader/Loader";
 import Button from "../../components/button/Button";
-import calculateVitaminIntake from "../../calculateVitaminIntake";
+import calculateVitaminIntake from "../../utils/calculateVitaminIntake";
 
 import "./Calculator.scss";
 const vitaminNames = [
@@ -49,9 +49,12 @@ const Calculator = () => {
     event.preventDefault();
     const { vitamin, sex, age } = formData;
     setDailyIntake(
-      calculateVitaminIntake(vitamin, sex, age) +
-        " of vitamin " +
-        vitamin.toUpperCase()
+      <>
+        {calculateVitaminIntake(vitamin, sex, age) +
+          " of vitamin " +
+          vitamin[0].toUpperCase()}
+        {vitamin.length > 1 && <sub>{vitamin.slice(1)}</sub>}
+      </>
     );
   };
 
@@ -141,7 +144,6 @@ const Calculator = () => {
             </form>
             <div className="col-12 col-md-6 px-5">
               <p className="text-warning fw-bold fs-1">
-                <sub>99</sub>
                 {dailyIntake || "Mockup"}
               </p>
             </div>

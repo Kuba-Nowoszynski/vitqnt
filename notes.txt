@@ -1,8 +1,7 @@
-0. add age to signup form
-1. Make signin validation. 
-3. Write algorithm for all vitamins.
+1. add sign-in/up and update validation for backend to prevent from eg. postman
 4. Fix expand info and add info about every vitamin
-5. add pregnant option to female - calculator
+5. add sound - eg. bubbles
+6. add pregnant option to female - calculator
 
 
 x. add recipes and suggested food for vitamin
