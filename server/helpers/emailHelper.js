@@ -10,7 +10,10 @@ const transporter = nodemailer.createTransport({
 
 exports.sendVerificationEmail = async (user, verifyToken) => {
   // handle email verification
-  const verificationLink = `http://localhost:5173/verify-email?token=${verifyToken}`; //change url later
+  const verificationLink =
+    process.env.NODE_ENV === "production"
+      ? `https://vitqnt.netlify.app/verify-email?token=${verifyToken}`
+      : `http://localhost:5173/verify-email?token=${verifyToken}`;
 
   const mailOptions = {
     from: process.env.EMAIL_ADDRESS,
@@ -23,7 +26,7 @@ exports.sendVerificationEmail = async (user, verifyToken) => {
   };
 
   //send email
-  transporter.sendMail(mailOptions, function (error, info) {
+  await transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
     } else {
@@ -32,9 +35,9 @@ exports.sendVerificationEmail = async (user, verifyToken) => {
   });
 };
 
-exports.verifyEmailTransporter = () => {
+exports.verifyEmailTransporter = async () => {
   //verify transporter
-  transporter.verify(function (error, success) {
+  await transporter.verify(function (error, success) {
     if (error) {
       console.log(error);
     } else {

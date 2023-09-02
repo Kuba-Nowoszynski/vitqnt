@@ -11,7 +11,7 @@ import Footer from "../../components/footer/Footer";
 import logo from "../../assets/logo.png";
 import "./Navigation.scss";
 const Navigation = () => {
-  const { user, loading } = useContext(UserContext);
+  const { user, loading, apiUrl } = useContext(UserContext);
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const toggleDropdown = () => {
@@ -21,7 +21,7 @@ const Navigation = () => {
   const handleSignout = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/api/signout", null, {
+      await axios.post(`${apiUrl}/signout`, null, {
         withCredentials: true,
       });
       window.location.reload(); // make sure that the changes from UserContext are applied

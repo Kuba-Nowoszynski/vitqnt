@@ -1,16 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 import axios from "axios";
 import "animate.css";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
-
 import verifiedImg from "../../assets/email-verified.png";
 import "./EmailVerification.scss";
+
 let hasRun = false; // prevents double render && double request
 
 const EmailVerification = () => {
   const navigate = useNavigate();
+  const { apiUrl } = useContext(UserContext);
   const [isVerified, setIsVerified] = useState(true);
   const [animateClasses, setAnimateClasses] = useState(
     "animate__animated animate__bounceIn"
@@ -41,7 +43,7 @@ const EmailVerification = () => {
       const verifyEmail = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:3000/api/verify-email?token=${token}`,
+            `${apiUrl}/verify-email?token=${token}`,
             {
               withCredentials: true, // Enable sending cookies
             }

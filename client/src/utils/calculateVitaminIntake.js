@@ -7,7 +7,7 @@ const vitaminIntakeData = {
       "4-8 years": "25",
       "9-13 years": "45",
       "14-18 years": "75",
-      "19–70 years": "90",
+      "19-70 years": "90",
       "> 70 years": "90",
     },
     female: {
@@ -17,7 +17,7 @@ const vitaminIntakeData = {
       "4-8 years": "25",
       "9-13 years": "45",
       "14-18 years": "65",
-      "19–70 years": "75",
+      "19-70 years": "75",
       "> 70 years": "75",
     },
     unit: "mg",
@@ -30,7 +30,7 @@ const vitaminIntakeData = {
       "4-8 years": "0.6",
       "9-13 years": "0.9",
       "14-18 years": "1.2",
-      "19–70 years": "1.2",
+      "19-70 years": "1.2",
       "> 70 years": "1.2",
     },
     female: {
@@ -40,7 +40,7 @@ const vitaminIntakeData = {
       "4-8 years": "0.6",
       "9-13 years": "0.9",
       "14-18 years": "1.0",
-      "19–70 years": "1.1",
+      "19-70 years": "1.1",
       "> 70 years": "1.1",
     },
     unit: "mg",
@@ -53,7 +53,7 @@ const vitaminIntakeData = {
       "4-8 years": "0.6",
       "9-13 years": "0.9",
       "14-18 years": "1.3",
-      "19–70 years": "1.3",
+      "19-70 years": "1.3",
       "> 70 years": "1.3",
     },
     female: {
@@ -63,7 +63,7 @@ const vitaminIntakeData = {
       "4-8 years": "0.6",
       "9-13 years": "0.9",
       "14-18 years": "1.0",
-      "19–70 years": "1.1",
+      "19-70 years": "1.1",
       "> 70 years": "1.1",
     },
     unit: "mg",
@@ -76,7 +76,7 @@ const vitaminIntakeData = {
       "4-8 years": "8",
       "9-13 years": "12",
       "14-18 years": "16",
-      "19–70 years": "16",
+      "19-70 years": "16",
       "> 70 years": "16",
     },
     female: {
@@ -86,7 +86,7 @@ const vitaminIntakeData = {
       "4-8 years": "8",
       "9-13 years": "12",
       "14-18 years": "14",
-      "19–70 years": "14",
+      "19-70 years": "14",
       "> 70 years": "14",
     },
     unit: "mg",
@@ -99,7 +99,7 @@ const vitaminIntakeData = {
       "4-8 years": "0.6",
       "9-13 years": "1.0",
       "14-18 years": "1.3",
-      "19–70 years": "1.3",
+      "19-70 years": "1.3",
       "> 70 years": "1.7",
     },
     female: {
@@ -109,7 +109,7 @@ const vitaminIntakeData = {
       "4-8 years": "0.6",
       "9-13 years": "1.0",
       "14-18 years": "1.2",
-      "19–70 years": "1.3",
+      "19-70 years": "1.3",
       "> 70 years": "1.5",
     },
     unit: "mg",
@@ -122,7 +122,7 @@ const vitaminIntakeData = {
       "4-8 years": "200",
       "9-13 years": "300",
       "14-18 years": "400",
-      "19–70 years": "400",
+      "19-70 years": "400",
       "> 70 years": "400",
     },
     female: {
@@ -132,7 +132,7 @@ const vitaminIntakeData = {
       "4-8 years": "200",
       "9-13 years": "300",
       "14-18 years": "400",
-      "19–70 years": "400",
+      "19-70 years": "400",
       "> 70 years": "400",
     },
     unit: "μg",
@@ -145,7 +145,7 @@ const vitaminIntakeData = {
       "4-8 years": "1.2",
       "9-13 years": "1.8",
       "14-18 years": "2.4",
-      "19–70 years": "2.4",
+      "19-70 years": "2.4",
       "> 70 years": "2.4",
     },
     female: {
@@ -155,7 +155,7 @@ const vitaminIntakeData = {
       "4-8 years": "1.2",
       "9-13 years": "1.8",
       "14-18 years": "2.4",
-      "19–70 years": "2.4",
+      "19-70 years": "2.4",
       "> 70 years": "2.4",
     },
     unit: "μg",
@@ -168,7 +168,7 @@ const vitaminIntakeData = {
       "4-8 years": "400",
       "9-13 years": "600",
       "14-18 years": "900",
-      "19–70 years": "900",
+      "19-70 years": "900",
       "> 70 years": "900",
     },
     female: {
@@ -178,7 +178,7 @@ const vitaminIntakeData = {
       "4-8 years": "400",
       "9-13 years": "600",
       "14-18 years": "700",
-      "19–70 years": "700",
+      "19-70 years": "700",
       "> 70 years": "700",
     },
     unit: "μg",
@@ -191,7 +191,7 @@ const vitaminIntakeData = {
       "4-8 years": "600",
       "9-13 years": "600",
       "14-18 years": "600",
-      "19–70 years": "600",
+      "19-70 years": "600",
       "> 70 years": "800",
     },
     female: {
@@ -201,7 +201,7 @@ const vitaminIntakeData = {
       "4-8 years": "600",
       "9-13 years": "600",
       "14-18 years": "600",
-      "19–70 years": "600",
+      "19-70 years": "600",
       "> 70 years": "800",
     },
     unit: "IU",
@@ -214,7 +214,7 @@ const vitaminIntakeData = {
       "4-8 years": "7",
       "9-13 years": "11",
       "14-18 years": "15",
-      "19–70 years": "15",
+      "19-70 years": "15",
       "> 70 years": "15",
     },
     female: {
@@ -224,7 +224,7 @@ const vitaminIntakeData = {
       "4-8 years": "7",
       "9-13 years": "11",
       "14-18 years": "15",
-      "19–70 years": "15",
+      "19-70 years": "15",
       "> 70 years": "15",
     },
     unit: "mg",
@@ -237,7 +237,7 @@ const vitaminIntakeData = {
       "4-8 years": "55",
       "9-13 years": "60",
       "14-18 years": "75",
-      "19–70 years": "120",
+      "19-70 years": "120",
       "> 70 years": "120",
     },
     female: {
@@ -247,7 +247,7 @@ const vitaminIntakeData = {
       "4-8 years": "55",
       "9-13 years": "60",
       "14-18 years": "75",
-      "19–70 years": "90",
+      "19-70 years": "90",
       "> 70 years": "90",
     },
     unit: "μg",
@@ -317,7 +317,7 @@ function getAgeRange(age) {
     case age >= 14 && age <= 18:
       return "14-18 years";
     case age >= 19 && age <= 70:
-      return "19–70 years";
+      return "19-70 years";
     default:
       return "> 70 years";
   }

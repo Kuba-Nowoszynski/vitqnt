@@ -67,6 +67,8 @@ exports.verifyEmail = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
+      sameSite: "None",
+      secure: true, // Set secure only in production
     });
     // Send response
     res.json({ message: "Email verified successfully" });
@@ -99,6 +101,8 @@ exports.signin = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
+      sameSite: "None",
+      secure: true, // Set secure only in production
     });
 
     // Send response
@@ -127,9 +131,9 @@ exports.signout = (req, res) => {
   // Clear the token cookie
   res.clearCookie("token", {
     httpOnly: true,
-    // same domain and path as you set when creating the cookie
-    domain: "localhost",
     path: "/",
+    sameSite: "None",
+    secure: true, // Set secure only in production
   });
   // Send response
   res.json({ message: "Logged out" });

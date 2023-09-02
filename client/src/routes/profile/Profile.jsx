@@ -63,7 +63,6 @@ const Profile = () => {
 
   const saveChanges = async () => {
     if (isFormValid) {
-      console.log(formData); // Perform actual saving logic here
       try {
         const response = await axios.put(`${apiUrl}/updateProfile`, formData, {
           headers: {
@@ -71,10 +70,6 @@ const Profile = () => {
           },
           withCredentials: true,
         });
-
-        if (response.data.user) {
-          console.log("Profile updated successfully");
-        }
       } catch (error) {
         console.error("Error updating profile:", error);
       }

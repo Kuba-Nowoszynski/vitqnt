@@ -82,7 +82,6 @@ const SignUp = () => {
         try {
           const response = await axios.post(`${apiUrl}/signup`, formData);
           hasRun = true;
-          console.log(response.data); // Handle the response as needed
           setIsAnimated(true);
 
           let timeout = setTimeout(() => {
