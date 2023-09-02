@@ -1,16 +1,14 @@
 1. add sign-in/up and update validation for backend to prevent from eg. postman
-4. Fix expand info and add info about every vitamin
+2. icons instead of text for navigation tabs
 5. add sound - eg. bubbles
-6. add pregnant option to female - calculator
+6. add pregnant and breastfeeding option to female - calculator + profile (and update algorithm with these 2 options)
 
 
 x. add recipes and suggested food for vitamin
-x2. handle sign-in/up validation eg. min password, max name, email/name already exists OR show incorrect password/username
+x2. handle sign-up validation email already exists + sign-in don't allow if email is not verified
 x3. replace ALL localhost urls
 x4. go through all comments - especially on frontend and change logs to messages to user - make separate branch for production (keep console.log and other stuff) and deployment
 x5. Show error message depending on error eg. token expired - sign up again
-x6. Don't allow to sign in if email is not verified
 x7. set default error page with 3/4 tiles instead of 404
 x8. prevent from post api signup and if email exists
 =====
-save user data, extend current user model to keep age, gender and so on

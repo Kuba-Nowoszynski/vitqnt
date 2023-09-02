@@ -2,55 +2,101 @@
 
 .tile {
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
   margin: 1em 2em;
   background: $main;
-  &:hover {
-    scale: 1.05;
-    box-shadow: 0 0 50px 1px white;
+  box-shadow: 0 0 10px 1px $main;
+  transition: box-shadow 0.2s ease-in-out;
+  transition: scale 0.2s ease-in-out;
+  //set different background for every third tile
+  &:nth-child(3n + 2) {
+    background-color: $secondary;
+    box-shadow: 0 0 10px 1px $secondary;
   }
+  &:nth-child(3n) {
+    background-color: $blue;
+    box-shadow: 0 0 10px 1px $blue;
+  }
+  //on desktop 13th is centered that's why seperate styling
+  &:nth-child(13) {
+    background-color: $secondary;
+    box-shadow: 0 0 10px 1px $secondary;
+    @include responsive(
+      background-color,
+      (
+        mobile-small: $main,
+        mobile: $main,
+        tablet: $main,
+      )
+    );
+    @include responsive(
+      box-shadow,
+      (
+        mobile-small: 0 0 10px 1px $main,
+        mobile: 0 0 10px 1px $main,
+        tablet: 0 0 10px 1px $main,
+      )
+    );
+  }
+  &.not-expanded {
+    &:hover {
+      scale: 1.05;
+      box-shadow: 0 0 10px 1px $pastel-blue;
+    }
+  }
+  &.expanded {
+    box-shadow: 0 0 10px 1px $pastel-blue;
+    cursor: default;
+  }
+
   img {
     max-width: 40%;
     max-height: 90%;
   }
   .tile-header {
-    color: white;
+    h2 {
+      color: $pastel-blue;
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -10%;
+        width: 100%;
+        height: 0.1em;
+        border-radius: 5em;
+        background: $pastel-blue;
+      }
+    }
     font-size: 2em;
+    .close-btn {
+      position: absolute;
+      top: 3%;
+      right: 2%;
+      height: 0.5em;
+      width: 0.5em;
+      border: none;
+      cursor: pointer;
+      background: url("../../assets/close-btn.png") no-repeat;
+      background-size: cover;
+      transition: all 0.3s ease;
+      scale: 0.8;
+      opacity: 0.6;
+      &:hover {
+        filter: invert(100%);
+        rotate: 90deg;
+        opacity: 0.9;
+        scale: 1;
+      }
+    }
   }
-  .close-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-  }
-  .tile-content {
-    display: none;
-    color: white;
-  }
-
-  &.expanded {
-    position: fixed;
-    background: rgba($green, 0.7);
-    top: 50%;
-    left: 50%;
-    cursor: default;
-    transform: translate(-60%, -50%) scale(2);
-    z-index: 9999;
-
-    //ensure that the expanded tile is center on each viewport
+  .description {
+    color: $green;
+    width: 90%;
+    //make tile look better on tablet - without it it is very short
     @include responsive(
-      transform,
+      font-size,
       (
-        mobile-small: translate(-60%, -50%) scale(1.1),
-        mobile: translate(-55%, -50%) scale(1.1),
-        tablet: translate(-55%, -50%) scale(1.1),
+        tablet: 1.5em,
       )
     );
-    .tile-content {
-      display: block;
-    }
   }
 }

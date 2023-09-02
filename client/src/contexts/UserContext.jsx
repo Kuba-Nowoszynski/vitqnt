@@ -9,10 +9,14 @@ export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // Add loading state
 
+  const apiUrl =
+    import.meta.env.VITE_ENV === "production"
+      ? "https://your-production-url/api"
+      : "http://localhost:3000/api";
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/getuser", {
+        const response = await axios.get(`${apiUrl}/getuser`, {
           withCredentials: true,
         });
         const { name, email, sex, age, vitaminIntake } = response.data;
@@ -28,7 +32,7 @@ export const UserContextProvider = ({ children }) => {
     getUserData();
   }, []);
 
-  const value = { user, setUser, loading };
+  const value = { user, setUser, loading, apiUrl };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

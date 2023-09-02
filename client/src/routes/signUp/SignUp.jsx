@@ -25,7 +25,7 @@ const SignUp = () => {
   });
   const [isAnimated, setIsAnimated] = useState(false);
   const [isCreated, setIsCreated] = useState(false);
-  const { user, loading } = useContext(UserContext);
+  const { user, loading, apiUrl } = useContext(UserContext);
   //redirect user if signed in
 
   useEffect(() => {
@@ -80,10 +80,7 @@ const SignUp = () => {
       e.preventDefault();
       if (isFormValid) {
         try {
-          const response = await axios.post(
-            "http://localhost:3000/api/signup",
-            formData
-          );
+          const response = await axios.post(`${apiUrl}/signup`, formData);
           hasRun = true;
           console.log(response.data); // Handle the response as needed
           setIsAnimated(true);
@@ -135,7 +132,10 @@ const SignUp = () => {
                 isAnimated && "animate__animated animate__fadeOut"
               }`}
             >
-              <form className="form mx-auto py-4 px-4 text-center d-flex flex-column  gap-3  ">
+              <form
+                className="form mx-auto py-4 px-4 text-center d-flex flex-column  gap-3"
+                autoComplete="on"
+              >
                 <span className="title">Sign up</span>
                 <span className="subtitle">
                   Create a free account with your email
@@ -148,6 +148,7 @@ const SignUp = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    autoComplete="name"
                   />
                   <input
                     type="email"
@@ -156,6 +157,7 @@ const SignUp = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    autoComplete="email"
                   />
                   <input
                     type="password"
@@ -164,6 +166,7 @@ const SignUp = () => {
                     value={formData.password}
                     onChange={handleChange}
                     required
+                    autoComplete="new-password"
                   />
                   <input
                     type="number"

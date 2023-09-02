@@ -6,7 +6,44 @@
     color: black;
   }
   width: 90%;
-  background: rgba($main, 0.3);
-
+  background: rgba($pastel-blue, 0.3);
   position: relative;
+  overflow: hidden;
+  z-index: 10;
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(209, 193, 255, 0.8);
+    transform: rotate(45deg);
+    left: -60%;
+    z-index: -1;
+    @include responsive(
+      //better styles for mobile
+      left,
+      (
+        mobile-small: -100%,
+      )
+    );
+
+    bottom: 20%;
+    border-radius: 100em 0 100em 0;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  &::after {
+    left: unset;
+    bottom: unset;
+    right: -70%;
+    top: 20%;
+    @include responsive(
+      //better styles for mobile
+      right,
+      (
+        mobile-small: -100%,
+      )
+    );
+  }
 }

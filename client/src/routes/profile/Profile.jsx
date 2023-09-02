@@ -13,7 +13,7 @@ const Profile = () => {
   const [isFormValid, setIsFormValid] = useState(false); // Track form validity
   const [validationError, setValidationError] = useState(""); // State for validation error message
   const [showErrorPopup, setShowErrorPopup] = useState(false); // State to toggle error popup
-  const { user, loading } = useContext(UserContext);
+  const { user, loading, apiUrl } = useContext(UserContext);
   const [formData, setFormData] = useState({
     name: user?.name || "",
     sex: user?.sex || "male",
@@ -65,16 +65,12 @@ const Profile = () => {
     if (isFormValid) {
       console.log(formData); // Perform actual saving logic here
       try {
-        const response = await axios.put(
-          "http://localhost:3000/api/updateProfile",
-          formData,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        );
+        const response = await axios.put(`${apiUrl}/updateProfile`, formData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
 
         if (response.data.user) {
           console.log("Profile updated successfully");

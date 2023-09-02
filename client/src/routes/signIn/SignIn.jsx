@@ -18,7 +18,7 @@ const SignIn = () => {
     email: "",
     password: "",
   });
-  const { user, loading } = useContext(UserContext);
+  const { user, loading, apiUrl } = useContext(UserContext);
   //redirect user if signed in
   useEffect(() => {
     if (!loading && user) {
@@ -65,13 +65,9 @@ const SignIn = () => {
       };
     } else {
       try {
-        const response = await axios.post(
-          "http://localhost:3000/api/signin",
-          formData,
-          {
-            withCredentials: true, // Enable sending cookies
-          }
-        );
+        const response = await axios.post(`${apiUrl}/signin`, formData, {
+          withCredentials: true, // Enable sending cookies
+        });
 
         navigate("/");
         window.location.reload(); // make sure that the changes from UserContext are applied
