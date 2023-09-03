@@ -3,23 +3,11 @@ import { UserContext } from "../../contexts/UserContext";
 import Loader from "../../components/loader/Loader";
 import Button from "../../components/button/Button";
 import calculateVitaminIntake from "../../utils/calculateVitaminIntake";
+import vitaminFunFacts from "./vitaminFunFacts";
+import vitaminSources from "./vitaminSources";
+import vitaminNames from "./vitaminNames";
 
 import "./Calculator.scss";
-const vitaminNames = [
-  "c",
-  "b1",
-  "b2",
-  "b3",
-  "b5",
-  "b6",
-  "b7",
-  "b9",
-  "b12",
-  "a",
-  "d",
-  "e",
-  "k",
-];
 
 const Calculator = () => {
   const { user, loading } = useContext(UserContext);
@@ -29,6 +17,10 @@ const Calculator = () => {
     age: user?.age || 25,
   });
   const [dailyIntake, setDailyIntake] = useState(null);
+  const [response, setResponse] = useState(
+    `Did you know that ${vitaminFunFacts[Math.floor(Math.random() * 13)]}`
+  );
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   //wait for getting the user data and sets it from context
   useEffect(() => {
@@ -47,16 +39,38 @@ const Calculator = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setResponse("");
+
     const { vitamin, sex, age } = formData;
+    const calculatedIntake = calculateVitaminIntake(vitamin, sex, age);
+    const suggestedFood =
+      vitaminSources[vitamin].slice(0, 2).join(", ") +
+      " and " +
+      vitaminSources[vitamin][2];
+
     setDailyIntake(
-      <>
-        {calculateVitaminIntake(vitamin, sex, age) +
-          " of vitamin " +
-          vitamin[0].toUpperCase()}
-        {vitamin.length > 1 && <sub>{vitamin.slice(1)}</sub>}
-      </>
+      "Your recommended daily intake of vitamin " +
+        vitamin.toUpperCase() +
+        " amounts to " +
+        calculatedIntake +
+        ". Great recommended vitamin sources include " +
+        suggestedFood
     );
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (response?.length < dailyIntake?.length) {
+        setResponse((prev) => prev + dailyIntake[currentIndex]);
+        setCurrentIndex((prevIndex) => prevIndex + 1);
+      } else {
+        setCurrentIndex(0);
+        clearInterval(interval);
+      }
+    }, 20);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, dailyIntake, response]);
 
   return (
     <>
@@ -68,7 +82,7 @@ const Calculator = () => {
           <div className="row p-0 g-0">
             <form
               className="col-12 col-md-6  d-flex flex-column justify-content-evenly "
-              onSubmit={handleSubmit}
+              onSubmit={!currentIndex && handleSubmit}
             >
               <div>
                 {" "}
@@ -77,7 +91,6 @@ const Calculator = () => {
                   {vitaminNames.map((name, index) => (
                     <input
                       key={index}
-                      // className="mx-3 my-2"
                       type="radio"
                       name="vitamin"
                       value={name}
@@ -90,7 +103,6 @@ const Calculator = () => {
               </div>
 
               <div>
-                {" "}
                 <h3 htmlFor="age" className="age-display text-center py-3 ">
                   Age: {formData.age}
                 </h3>
@@ -140,11 +152,18 @@ const Calculator = () => {
                   <span className="name sex">sex</span>
                 </label>
               </div>
-              <Button text="Submit" className="d-block mx-auto" />
+              <Button
+                text="Submit"
+                className="d-block mx-auto"
+                disabled={currentIndex}
+              />
             </form>
-            <div className="col-12 col-md-6 px-5">
-              <p className="text-warning fw-bold fs-1">
-                {dailyIntake || "Mockup"}
+            <div className="col-12 col-md-6">
+              <p className="response  ms-5 mt-5">
+                {response ||
+                  `Did you know that ${
+                    vitaminFunFacts[Math.floor(Math.random() * 13)]
+                  }`}
               </p>
             </div>
           </div>

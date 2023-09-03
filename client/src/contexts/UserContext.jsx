@@ -3,11 +3,10 @@ import { createContext } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// const apiUrl =
-//   import.meta.env.VITE_ENV === "production"
-//     ? "https://vitqnt-backend.onrender.com/api"
-//     : "http://localhost:3000/api";
-const apiUrl = "https://vitqnt-backend.onrender.com/api";
+const apiUrl =
+  import.meta.env.VITE_ENV === "production"
+    ? "https://vitqnt-backend.onrender.com/api"
+    : "http://localhost:3000/api";
 
 export const UserContext = createContext({ user: { name: "" } });
 

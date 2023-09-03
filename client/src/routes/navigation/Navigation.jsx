@@ -4,6 +4,12 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
+import homeIcon from "../../assets/icons/home.png";
+import calculatorIcon from "../../assets/icons/calculator.png";
+import infoIcon from "../../assets/icons/info.png";
+import deficitIcon from "../../assets/icons/deficit.png";
+import maleIcon from "../../assets/icons/male.png";
+import femaleIcon from "../../assets/icons/female.png";
 
 import Button from "../../components/button/Button";
 import Footer from "../../components/footer/Footer";
@@ -43,9 +49,20 @@ const Navigation = () => {
               <img className="" src={logo} alt="logo" />
             </NavLink>{" "}
             <div className="features d-flex gap-5">
-              <NavLink to="/">Home</NavLink>
-              <NavLink to="/calculator">Calculator</NavLink>
-              <NavLink to="/info">Info</NavLink>
+              <NavLink to="/">
+                <img src={homeIcon} alt="home icon" />
+              </NavLink>
+              <NavLink to="/calculator">
+                <img src={calculatorIcon} alt="calculator icon" />
+              </NavLink>
+              <NavLink to="/info">
+                {" "}
+                <img src={infoIcon} alt="info icon" />
+              </NavLink>
+              <NavLink to="/deficit">
+                {" "}
+                <img src={deficitIcon} alt="deficit icon" />
+              </NavLink>
               {/* TO BE ADDED LATER */}
               {/* <NavLink to="/recipes">Recipes</NavLink> */}
             </div>
@@ -58,10 +75,19 @@ const Navigation = () => {
                   >
                     Sign Out
                   </button>
-                  <Button
-                    text={"Profile"}
-                    onClick={() => navigate("/profile")}
-                  />
+                  {user.sex === "male" ? (
+                    <img
+                      src={maleIcon}
+                      alt="male icon"
+                      onClick={() => navigate("/profile")}
+                    />
+                  ) : (
+                    <img
+                      src={femaleIcon}
+                      alt="female icon"
+                      onClick={() => navigate("/profile")}
+                    />
+                  )}
                 </>
               ) : (
                 <>

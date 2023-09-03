@@ -1,0 +1,72 @@
+@import "../../variables";
+
+.deficit {
+  width: 90%;
+
+  .food-btn {
+    position: relative;
+    transition: all 0.15s ease-in-out;
+
+    border-radius: 50%;
+    width: 8em;
+    height: 8em;
+    @include responsive(
+      width,
+      (
+        mobile-small: 4em,
+        mobile: 8em,
+        tablet: 12em,
+      )
+    );
+    @include responsive(
+      height,
+      (
+        mobile-small: 4em,
+        mobile: 8em,
+        tablet: 12em,
+      )
+    );
+
+    img {
+      width: 100%;
+      padding: 1em;
+      @include responsive(
+        padding,
+        (
+          mobile-small: 0.1em,
+          mobile: 0.5em,
+          tablet: 1.5em,
+        )
+      );
+    }
+    &.selected {
+      opacity: 0.4;
+    }
+
+    .description {
+      display: none;
+      position: absolute;
+      bottom: 110%;
+      background: $pastel-blue;
+      transform: translateX(-20%);
+      width: 10em;
+    }
+
+    &:hover {
+      scale: 1.05;
+      .description {
+        display: block;
+        animation: 0.4s fadeIn;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

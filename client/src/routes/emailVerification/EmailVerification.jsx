@@ -5,13 +5,17 @@ import axios from "axios";
 import "animate.css";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
+import useSound from "use-sound";
+
 import verifiedImg from "../../assets/email-verified.png";
+import bubbles from "../../assets/bubbles.mp3";
 import "./EmailVerification.scss";
 
 let hasRun = false; // prevents double render && double request
 
 const EmailVerification = () => {
   const navigate = useNavigate();
+  const [play] = useSound(bubbles);
   const { apiUrl } = useContext(UserContext);
   const [isVerified, setIsVerified] = useState(true);
   const [animateClasses, setAnimateClasses] = useState(
@@ -49,7 +53,7 @@ const EmailVerification = () => {
             }
           );
           console.log(response.data);
-
+          play(); //play sound
           setIsVerified(true);
           startTimers();
         } catch (error) {

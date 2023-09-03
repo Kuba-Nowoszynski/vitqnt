@@ -18,7 +18,8 @@
     "react-error-boundary": "^4.0.11",
     "react-router": "^6.15.0",
     "react-router-dom": "^6.15.0",
-    "sass": "^1.66.1"
+    "sass": "^1.66.1",
+    "use-sound": "^4.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

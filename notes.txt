@@ -1,19 +1,21 @@
 1. add sign-in/up and update validation for backend to prevent from eg. postman
 2. icons instead of text for navigation tabs
 3. prevent from signing up if email already exists
-5. add sound - eg. bubbles
+4. fix mobile UI/UX
+5. also add sounds to sign-up/in and email verify. And deficit
 6. add pregnant and breastfeeding option to female - calculator + profile (and update algorithm with these 2 options)
-7. create new email and add social medias
+7. create new email (update nodemailer) and add social medias and also domain - godaddy with new email (if no discount with jakubnowoszynski@gmail.com)
 8. Expand home page
 9. On verified email redirects to vitamin deficit
 10. on email verification fail/error show 'your verifaction link has expired, sign up again'
+11. make deficit only available for signed in
+12. move deficit .js files to data and utils folders
+
+
 
 x0. improve SEO (and also for my portfolio)
-x. add recipes and suggested food for vitamin
+x. add recipes 
 x2. handle sign-up validation email already exists + sign-in don't allow if email is not verified
-x3. replace ALL localhost urls
 x4. go through all comments - especially on frontend and change logs to messages to user - make separate branch for production (keep console.log and other stuff) and deployment
-x5. Show error message depending on error eg. token expired - sign up again
-x7. set default error page with 3/4 tiles instead of 404
 x8. prevent from post api signup and if email exists
 =====
