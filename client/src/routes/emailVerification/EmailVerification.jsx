@@ -2,22 +2,20 @@
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import axios from "axios";
-import "animate.css";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
-import useSound from "use-sound";
 
 import verifiedImg from "../../assets/email-verified.png";
-import bubbles from "../../assets/bubbles.mp3";
 import "./EmailVerification.scss";
 
 let hasRun = false; // prevents double render && double request
 
 const EmailVerification = () => {
   const navigate = useNavigate();
-  const [play] = useSound(bubbles);
-  const { apiUrl } = useContext(UserContext);
-  const [isVerified, setIsVerified] = useState(true);
+  const { apiUrl, loading, user } = useContext(UserContext);
+  const [isVerified, setIsVerified] = useState(false);
+  const [hasExpired, setHasExpired] = useState(false);
   const [animateClasses, setAnimateClasses] = useState(
     "animate__animated animate__bounceIn"
   );
@@ -30,16 +28,15 @@ const EmailVerification = () => {
 
     // Navigate after one second of the first timer
     const secondTimer = setTimeout(() => {
-      navigate("/");
+      navigate("/deficit");
       window.location.reload(); // make sure that the changes from UserContext are applied
-    }, 1000 + 600); // 1000ms for the first timer + delay
+    }, 1000 + 700); // 1000ms for the first timer + delay
 
     return () => {
       clearTimeout(firstTimer);
       clearTimeout(secondTimer);
     }; // Cleanup to prevent memory leaks
   };
-
   useEffect(() => {
     if (!hasRun) {
       // Check the flag
@@ -53,20 +50,20 @@ const EmailVerification = () => {
             }
           );
           console.log(response.data);
-          play(); //play sound
           setIsVerified(true);
           startTimers();
         } catch (error) {
-          console.log(error);
           console.error("Error verifying email:", error);
-          navigate("/error");
         }
       };
 
-      if (token) {
+      if (token && !user) {
+        console.log(token);
         verifyEmail();
+      } else if (user) {
+        navigate("/");
       } else {
-        navigate("/error");
+        setHasExpired(true);
       }
       hasRun = true; // Set the flag to true
     }
@@ -74,9 +71,8 @@ const EmailVerification = () => {
 
   return (
     <>
-      {" "}
-      {!isVerified && <Loader />}
-      {isVerified && (
+      {loading && <Loader />}
+      {!loading && isVerified && !user && !hasExpired && (
         <div
           className={`email-verified  col-11 col-md-8 col-xl-5 mx-auto my-2 rounded-5 d-flex flex-column justify-content-evenly align-items-center text-center ${animateClasses}`}
         >
@@ -84,13 +80,20 @@ const EmailVerification = () => {
           <h1 className=""> Email successfully verified!</h1>
         </div>
       )}
+      {!loading && !isVerified && hasExpired && (
+        <div className="position-expired my-5 my-md-2 d-flex flex-column justify-content-center">
+          <div className="expired animate__animated animate__bounceIn col-11 col-md-10 mx-auto my-auto d-flex flex-column justify-content-center align-items-center text-center rounded-5">
+            <h1 className="">
+              Your verifaction link has expired
+              <NavLink to="/sign-up" className="again mt-3 py-3 rounded-5">
+                Sign up again
+              </NavLink>
+            </h1>
+          </div>
+        </div>
+      )}
     </>
   );
 };
 
 export default EmailVerification;
-
-// animate__tada;
-// animate__bounceIn
-
-// animate__zoomOutUp;

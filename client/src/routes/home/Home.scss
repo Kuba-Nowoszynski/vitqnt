@@ -1,5 +1,5 @@
 @import "../../variables";
-.home {
+.home-1 {
   background-image: url("../../assets/banner.png");
   background-repeat: no-repeat;
   background-position: 80% center;
@@ -25,5 +25,63 @@
     font-weight: 400;
     // color: white;
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+  }
+}
+
+.home-2 {
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../../assets/calculator-bg.png");
+    background-size: contain;
+    background-position: center;
+    opacity: 0.3;
+  }
+  p {
+    font-size: 2.5em;
+    color: white;
+    font-weight: 400;
+    text-shadow: 2px 2px 5px $blue;
+  }
+  img {
+    box-shadow: 0 0 1px 10px $green;
+    cursor: pointer;
+  }
+}
+
+.home-3 {
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../../assets/food-bg.png");
+    background-size: contain;
+    background-position: center;
+    opacity: 0.3;
+  }
+  p {
+    font-size: 2.5em;
+    color: white;
+    font-weight: 400;
+    text-shadow: 2px 2px 5px $blue;
+  }
+  img {
+    box-shadow: 0 0 1px 10px rgba($main, 0.8);
+    cursor: pointer;
   }
 }

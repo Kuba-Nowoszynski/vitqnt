@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { NavLink } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "animate.css";
 
 import ErrorPopup from "../../components/errorPopup/ErrorPopup";
 import emailImg from "../../assets/email-account.png";
@@ -124,7 +124,7 @@ const SignUp = () => {
   return (
     <>
       {!loading && !user && (
-        <div className="sign-up-component d-flex justify-content-center align-items-center ">
+        <div className="animate__animated animate__bounceIn sign-up-component d-flex justify-content-center align-items-center ">
           {!isCreated && (
             <div
               className={`form-box mx-auto  rounded-4 my-3 ${

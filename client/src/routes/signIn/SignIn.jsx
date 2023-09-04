@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useState, useContext, useEffect } from "react";
+import { UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import ErrorPopup from "../../components/errorPopup/ErrorPopup";
 
-import { UserContext } from "../../contexts/UserContext";
 import "./SignIn.scss";
 
 const SignIn = () => {
@@ -93,7 +93,7 @@ const SignIn = () => {
   return (
     <>
       {!loading && !user && (
-        <div className="sign-in-component d-flex justify-content-center align-items-center ">
+        <div className="animate__animated animate__bounceIn sign-in-component d-flex justify-content-center align-items-center ">
           <div className="form-box mx-auto  rounded-4 my-3">
             <form
               className="form mx-auto py-4 px-4 text-center d-flex flex-column  gap-3"

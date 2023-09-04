@@ -77,11 +77,14 @@ const Calculator = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="calculator mx-auto">
-          <h1 className="text-center py-4">CALCULATOR</h1>
-          <div className="row p-0 g-0">
+        <div className="animate__animated animate__fadeInLeft calculator mx-auto">
+          <h1 className="text-center p-3 mx-auto rounded my-4 my-sm-2">
+            Vitamin Intake Calculator
+          </h1>
+
+          <div className="row p-0 g-0 mt-2">
             <form
-              className="col-12 col-md-6  d-flex flex-column justify-content-evenly "
+              className="col-12 col-md-6  d-flex flex-column justify-content-evenly mt-5 mt-sm-0"
               onSubmit={!currentIndex && handleSubmit}
             >
               <div>
@@ -153,13 +156,13 @@ const Calculator = () => {
                 </label>
               </div>
               <Button
-                text="Submit"
+                text="Check"
                 className="d-block mx-auto"
                 disabled={currentIndex}
               />
             </form>
             <div className="col-12 col-md-6">
-              <p className="response  ms-5 mt-5">
+              <p className="response  ms-5 mt-4 ">
                 {response ||
                   `Did you know that ${
                     vitaminFunFacts[Math.floor(Math.random() * 13)]

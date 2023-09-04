@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import axios from "axios";
 import ErrorPopup from "../../components/errorPopup/ErrorPopup";
 import Loader from "../../components/loader/Loader";
+import setVitaminIntake from "../../utils/setVitaminIntake";
 
 import "./Profile.scss";
 
@@ -13,7 +14,8 @@ const Profile = () => {
   const [isFormValid, setIsFormValid] = useState(false); // Track form validity
   const [validationError, setValidationError] = useState(""); // State for validation error message
   const [showErrorPopup, setShowErrorPopup] = useState(false); // State to toggle error popup
-  const { user, loading, apiUrl } = useContext(UserContext);
+  const [showSavePopup, setShowSavePopup] = useState(false); // State to toggle save popup
+  const { user, setUser, loading, apiUrl } = useContext(UserContext);
   const [formData, setFormData] = useState({
     name: user?.name || "",
     sex: user?.sex || "male",
@@ -70,25 +72,43 @@ const Profile = () => {
           },
           withCredentials: true,
         });
-      } catch (error) {
-        console.error("Error updating profile:", error);
-      }
-    } else {
-      // Display the validation error message in a more user-friendly way
-      if (validationError) {
-        setShowErrorPopup(true); // Show error popup when form is not valid
-        setIsFormChanged(false); // Prevent from clicking the button
+        //update UserContext
+        const updatedUser = response.data.user;
+        setUser((prev) => ({
+          ...prev,
+          name: updatedUser.name,
+          age: updatedUser.age,
+          sex: updatedUser.sex,
+          vitaminIntake: setVitaminIntake(updatedUser.sex, updatedUser.age),
+        }));
 
-        // Set a timeout to hide the error popup after 2 seconds
-        const errorTimeout = setTimeout(() => {
-          setShowErrorPopup(false);
+        setShowSavePopup(true); // Show save popup when form is valid
+        setIsFormChanged(false); // Prevent from clicking the button
+        // Set a timeout to hide the save popup after 2 seconds
+        const savePopupTimeout = setTimeout(() => {
+          setShowSavePopup(false);
           setIsFormChanged(true);
         }, 2000);
 
         return () => {
-          clearTimeout(errorTimeout); // Clear the timeout if the component unmounts or if this effect is re-run
+          clearTimeout(savePopupTimeout); // Clear the timeout if the component unmounts or if this effect is re-run
         };
+      } catch (error) {
+        console.error("Error updating profile:", error);
       }
+    } else if (validationError) {
+      setShowErrorPopup(true); // Show error popup when form is not valid
+      setIsFormChanged(false); // Prevent from clicking the button
+
+      // Set a timeout to hide the error popup after 2 seconds
+      const errorTimeout = setTimeout(() => {
+        setShowErrorPopup(false);
+        setIsFormChanged(true);
+      }, 2000);
+
+      return () => {
+        clearTimeout(errorTimeout); // Clear the timeout if the component unmounts or if this effect is re-run
+      };
     }
   };
 
@@ -117,7 +137,7 @@ const Profile = () => {
   return (
     <>
       {!loading && user && (
-        <div className="profile col-11 col-md-7 mx-auto my-3 py-2 d-flex flex-column align-items-center justify-content-around rounded-5">
+        <div className="animate__animated animate__fadeInDown profile col-11 col-md-7 mx-auto my-3 py-2 d-flex flex-column align-items-center justify-content-around rounded-5">
           <h1 className="py-1">Your Profile</h1>
           <div className="intake col-10 text-center py-3 my-5 rounded">
             {loading && <Loader />}
@@ -204,6 +224,12 @@ const Profile = () => {
               </div>
             </div>
             {showErrorPopup && <ErrorPopup message={validationError} />}
+            {showSavePopup && (
+              <ErrorPopup
+                message="Successfully saved changes"
+                className="green"
+              />
+            )}
           </div>
 
           <button

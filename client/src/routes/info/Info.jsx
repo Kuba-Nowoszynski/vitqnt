@@ -1,6 +1,5 @@
 import InfoTile from "../../components/infoTile/InfoTile";
 import { useState } from "react";
-import "./Info.scss";
 
 import vitaminInfo from "../../utils/vitaminInfo.json";
 import vitA from "../../assets/vitamins/a.png";
@@ -33,6 +32,7 @@ const vitaminImages = {
   b12: vitB12,
 };
 
+import "./Info.scss";
 const Info = () => {
   const [isAnyTileExpanded, setIsAnyTileExpanded] = useState(false); //make sure only one tile can be expanded at a time
   const vitaminNames = [
@@ -52,7 +52,7 @@ const Info = () => {
   ];
 
   return (
-    <div className="info mt-3 mx-auto rounded-5">
+    <div className="animate__animated animate__fadeInRight info mt-3 mx-auto rounded-5">
       <h1 className="text-center py-2">INFO</h1>
       <div className="info-tiles  d-flex justify-content-center flex-wrap d-row g-0 p-0">
         {vitaminNames.map((vitamin, index) => (

@@ -8,11 +8,16 @@ const apiUrl =
     ? "https://vitqnt-backend.onrender.com/api"
     : "http://localhost:3000/api";
 
-export const UserContext = createContext({ user: { name: "" } });
+export const UserContext = createContext({
+  user: { name: "" },
+  loading: false,
+  language: "english",
+});
 
 export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // Add loading state
+  const [language, setLanguage] = useState("english");
 
   useEffect(() => {
     const getUserData = async () => {
@@ -32,7 +37,7 @@ export const UserContextProvider = ({ children }) => {
     getUserData();
   }, []);
 
-  const value = { user, setUser, loading, apiUrl };
+  const value = { user, setUser, loading, apiUrl, language, setLanguage };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

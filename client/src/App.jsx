@@ -1,8 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import "animate.css";
+
 import Error from "./routes/error/Error";
 import Loader from "./components/loader/Loader";
-
 const Navigation = lazy(() => import("./routes/navigation/Navigation"));
 const Home = lazy(() => import("./routes/home/Home"));
 const Calculator = lazy(() => import("./routes/calculator/Calculator"));

@@ -11,6 +11,7 @@ import deficitIcon from "../../assets/icons/deficit.png";
 import maleIcon from "../../assets/icons/male.png";
 import femaleIcon from "../../assets/icons/female.png";
 
+import LanguageSwitch from "../../components/languageSwitch/LanguageSwitch";
 import Button from "../../components/button/Button";
 import Footer from "../../components/footer/Footer";
 
@@ -63,8 +64,7 @@ const Navigation = () => {
                 {" "}
                 <img src={deficitIcon} alt="deficit icon" />
               </NavLink>
-              {/* TO BE ADDED LATER */}
-              {/* <NavLink to="/recipes">Recipes</NavLink> */}
+              <LanguageSwitch />
             </div>
             <div className="sign d-flex gap-2">
               {user ? (
@@ -77,12 +77,14 @@ const Navigation = () => {
                   </button>
                   {user.sex === "male" ? (
                     <img
+                      className="profile-pic"
                       src={maleIcon}
                       alt="male icon"
                       onClick={() => navigate("/profile")}
                     />
                   ) : (
                     <img
+                      className="profile-pic"
                       src={femaleIcon}
                       alt="female icon"
                       onClick={() => navigate("/profile")}
@@ -129,8 +131,6 @@ const Navigation = () => {
                     <NavLink to="/">Home</NavLink>
                     <NavLink to="/calculator">Calculator</NavLink>
                     <NavLink to="/info">Info</NavLink>
-                    {/* TO BE ADDED LATER */}
-                    {/* <NavLink to="/">Recipes</NavLink> */}
                     <button
                       className="sign-in border-0 rounded-pill py-2"
                       onClick={() => navigate("/sign-in")}

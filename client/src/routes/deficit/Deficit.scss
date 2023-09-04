@@ -2,12 +2,16 @@
 
 .deficit {
   width: 90%;
-
+  h1 {
+    background: white;
+    width: fit-content;
+    border: 0.2em solid $green;
+    box-shadow: 0 0 1px 0.2em $pastel-blue;
+  }
   .food-btn {
     position: relative;
     transition: all 0.15s ease-in-out;
 
-    border-radius: 50%;
     width: 8em;
     height: 8em;
     @include responsive(
@@ -29,7 +33,6 @@
 
     img {
       width: 100%;
-      padding: 1em;
       @include responsive(
         padding,
         (
@@ -68,5 +71,72 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+.position-deficit-unauthorised {
+  height: 50vh;
+  .deficit-unauthorised {
+    background: $pastel-blue;
+    position: relative;
+    overflow: hidden;
+    h1 {
+      position: relative;
+      z-index: 3;
+      font-weight: 500;
+    }
+    img {
+      max-width: 20em;
+      @include responsive(
+        max-width,
+        (
+          mobile-small: 16em,
+        )
+      );
+      position: relative;
+      z-index: 3;
+      animation: 2s fadeIn;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        opacity: 0.9;
+        scale: 1.02;
+      }
+    }
+
+    &::before,
+    &::after {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      background-color: rgba(209, 193, 255, 0.8);
+      transform: rotate(45deg);
+      left: -60%;
+      @include responsive(
+        //better styles for mobile
+        left,
+        (
+          mobile-small: -85%,
+        )
+      );
+      bottom: 20%;
+      z-index: 1;
+      border-radius: 50em;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    }
+    &::after {
+      left: unset;
+      bottom: unset;
+      right: -70%;
+      top: 20%;
+      @include responsive(
+        //better styles for mobile
+        right,
+        (
+          mobile-small: -85%,
+        )
+      );
+    }
   }
 }

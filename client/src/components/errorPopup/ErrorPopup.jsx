@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import "./ErrorPopup.scss";
-import "animate.css";
 
-const ErrorPopup = ({ message }) => {
+const ErrorPopup = ({ message, className }) => {
   const [popupClass, setPopupClass] = useState("animate__fadeInUp");
 
   useEffect(() => {
@@ -17,7 +16,7 @@ const ErrorPopup = ({ message }) => {
 
   return (
     <div
-      className={`error-popup rounded-pill text-center animate__animated ${popupClass}`}
+      className={`error-popup rounded-pill text-center animate__animated ${popupClass} ${className}`}
     >
       {message}
     </div>

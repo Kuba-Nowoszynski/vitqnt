@@ -9,4 +9,8 @@
   padding: 0.5em 1em;
   font-size: 1.5em;
   color: $main;
+  &.green {
+    color: $green;
+    border-color: $green;
+  }
 }

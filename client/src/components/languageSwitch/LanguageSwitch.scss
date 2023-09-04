@@ -1,0 +1,28 @@
+@import "../../variables";
+
+.language-switch {
+  background: $pastel-blue;
+  height: 2em;
+  width: 4em;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  .switch-button {
+    position: absolute;
+    top: 0.2em;
+    left: 0.2em;
+    width: 1.5em;
+    height: 1.5em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-size: contain;
+    background-position: center;
+    background-image: url("../../assets/icons/english.png");
+  }
+  &.changed {
+    background: $blue;
+    .switch-button {
+      transform: translateX(135%);
+      background-image: url("../../assets/icons/polish.png");
+    }
+  }
+}

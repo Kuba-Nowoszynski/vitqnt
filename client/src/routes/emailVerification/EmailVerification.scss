@@ -14,3 +14,22 @@
     text-shadow: 0 0 1px $green;
   }
 }
+
+.position-expired {
+  height: 50vh;
+  .expired {
+    background: $pastel-blue;
+    height: 20em;
+    box-shadow: 0 0 1px 10px $main;
+    .again {
+      color: rgba($blue, 0.9);
+      display: block;
+      font-size: 2em;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        color: $blue;
+        background: white;
+      }
+    }
+  }
+}

@@ -3,6 +3,12 @@ $vitamin-images-path: "../../assets/vitamins/";
 
 .calculator {
   width: 80%;
+  h1 {
+    background: white;
+    width: fit-content;
+    border: 0.2em solid $secondary;
+    box-shadow: 0 0 1px 0.2em $pastel-blue;
+  }
   .vitamin-radio {
     input[type="radio"] {
       cursor: pointer;
