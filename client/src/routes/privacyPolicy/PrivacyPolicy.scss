@@ -1,0 +1,19 @@
+@import "../../variables";
+
+.privacy-policy {
+  background: $pastel-blue;
+  width: 95%;
+  box-shadow: 0 0 10px 10px $blue;
+  h1 {
+    padding-top: 3em;
+  }
+  h2 {
+    margin: 0.5em 0;
+  }
+  p {
+    padding: 0.5em 0;
+    &:last-of-type {
+      padding-bottom: 3em;
+    }
+  }
+}

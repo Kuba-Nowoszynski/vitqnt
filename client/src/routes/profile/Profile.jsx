@@ -6,16 +6,27 @@ import ErrorPopup from "../../components/errorPopup/ErrorPopup";
 import Loader from "../../components/loader/Loader";
 import setVitaminIntake from "../../utils/setVitaminIntake";
 
+import useSound from "use-sound";
+import bellsSound from "../../assets/sounds/bells-sound.wav";
+import buzzSound from "../../assets/sounds/buzz-sound.wav";
 import "./Profile.scss";
 
 const Profile = () => {
+  const [playBells] = useSound(bellsSound);
+  const [playBuzz] = useSound(buzzSound);
   const navigate = useNavigate();
+  const {
+    user,
+    setUser,
+    loading,
+    apiUrl,
+    languageText: { profile: languageText },
+  } = useContext(UserContext);
   const [isFormChanged, setIsFormChanged] = useState(false); // Track form changes
   const [isFormValid, setIsFormValid] = useState(false); // Track form validity
   const [validationError, setValidationError] = useState(""); // State for validation error message
   const [showErrorPopup, setShowErrorPopup] = useState(false); // State to toggle error popup
   const [showSavePopup, setShowSavePopup] = useState(false); // State to toggle save popup
-  const { user, setUser, loading, apiUrl } = useContext(UserContext);
   const [formData, setFormData] = useState({
     name: user?.name || "",
     sex: user?.sex || "male",
@@ -51,13 +62,11 @@ const Profile = () => {
     setIsFormValid(nameIsValid && ageIsValid && nameIsNotTooLong);
 
     if (!nameIsValid) {
-      setValidationError(
-        "Name cannot be empty and must only contain letters and spaces"
-      );
+      setValidationError(languageText.errorEmptyName);
     } else if (!nameIsNotTooLong) {
-      setValidationError("Name cannot be longer than 50 characters");
+      setValidationError(languageText.errorLongName);
     } else if (!ageIsValid) {
-      setValidationError("Age must be between 0 and 90");
+      setValidationError(languageText.errorInvalidAge);
     } else {
       setValidationError("");
     }
@@ -81,7 +90,7 @@ const Profile = () => {
           sex: updatedUser.sex,
           vitaminIntake: setVitaminIntake(updatedUser.sex, updatedUser.age),
         }));
-
+        playBells();
         setShowSavePopup(true); // Show save popup when form is valid
         setIsFormChanged(false); // Prevent from clicking the button
         // Set a timeout to hide the save popup after 2 seconds
@@ -97,6 +106,8 @@ const Profile = () => {
         console.error("Error updating profile:", error);
       }
     } else if (validationError) {
+      playBuzz();
+
       setShowErrorPopup(true); // Show error popup when form is not valid
       setIsFormChanged(false); // Prevent from clicking the button
 
@@ -114,20 +125,21 @@ const Profile = () => {
 
   const [flashingDivs, setFlashingDivs] = useState([]);
   const [usedIndexes, setUsedIndexes] = useState([]);
+
   // Manages a flashing effect on div elements
   useEffect(() => {
     const interval = setInterval(() => {
-      if (usedIndexes.length < 13) {
+      if (usedIndexes.length < user.vitaminIntake.length) {
         let randomIndex;
         do {
-          randomIndex = Math.floor(Math.random() * 13);
+          randomIndex = Math.floor(Math.random() * user.vitaminIntake.length);
         } while (usedIndexes.includes(randomIndex));
         setUsedIndexes((prevUsed) => [...prevUsed, randomIndex]);
         setFlashingDivs((prevDivs) => [...prevDivs, randomIndex]);
       } else {
         clearInterval(interval); // Stop the interval when all indexes are used
       }
-    }, 300);
+    }, 200);
 
     return () => {
       clearInterval(interval);
@@ -138,22 +150,22 @@ const Profile = () => {
     <>
       {!loading && user && (
         <div className="animate__animated animate__fadeInDown profile col-11 col-md-7 mx-auto my-3 py-2 d-flex flex-column align-items-center justify-content-around rounded-5">
-          <h1 className="py-1">Your Profile</h1>
+          <h1 className="py-1">{languageText.header}</h1>
           <div className="intake col-10 text-center py-3 my-5 rounded">
             {loading && <Loader />}
-            <h2 className="py-2">Your daily vitamin intake</h2>
+            <h2 className="py-2">{languageText.dailyIntake}</h2>
             <div className="vitamin-list d-flex flex-wrap justify-content-center px-1 py-3">
               {user?.vitaminIntake.map((vitamin, index) => (
                 <div
                   key={vitamin.name}
                   className={`d-flex rounded-pill ${
                     flashingDivs.includes(index)
-                      ? "flash animate__animated animate__fadeIn"
+                      ? "animate__animated animate__bounceIn"
                       : ""
                   }`}
                 >
                   <h5 className="pe-2">
-                    Vitamin {vitamin.name[0].toUpperCase()}
+                    {languageText.vitamin} {vitamin.name[0].toUpperCase()}
                     {vitamin.name.length > 1 && (
                       <sub>{vitamin.name.slice(1)}</sub>
                     )}
@@ -165,15 +177,15 @@ const Profile = () => {
           </div>
           <div className="user-data d-flex my-3 px-3 py-3 justify-content-evenly">
             <div className="labels rounded-3 text-center px-2 d-flex flex-column justify-content-evenly">
-              <label htmlFor="name">Name</label>
-              <label htmlFor="email">Email</label>
-              <label htmlFor="age">Age</label>
-              <label htmlFor="sex">Sex</label>
+              <label htmlFor="name">{languageText.name}</label>
+              <label htmlFor="email">{languageText.email}</label>
+              <label htmlFor="age">{languageText.age}</label>
+              <label htmlFor="sex">{languageText.sex}</label>
             </div>
             <div className="form-container d-flex flex-column rounded-5 my-3">
               <input
                 type="text"
-                placeholder="Full Name"
+                placeholder={languageText.placeholderName}
                 name="name"
                 id="name"
                 value={formData.name}
@@ -183,7 +195,7 @@ const Profile = () => {
               />
               <input
                 type="email"
-                placeholder="Email"
+                placeholder={languageText.placeholderEmail}
                 name="email"
                 id="email"
                 defaultValue={formData.email}
@@ -191,7 +203,7 @@ const Profile = () => {
               />
               <input
                 type="number"
-                placeholder="Not set"
+                placeholder={languageText.placeholderAge}
                 name="age"
                 id="age"
                 value={formData.age}
@@ -209,7 +221,7 @@ const Profile = () => {
                     checked={formData.sex === "male"}
                     onChange={handleChange}
                   />
-                  <span className="name">Male</span>
+                  <span className="name">{languageText.male}</span>
                 </label>
                 <label className="radio">
                   <input
@@ -219,16 +231,13 @@ const Profile = () => {
                     checked={formData.sex === "female"}
                     onChange={handleChange}
                   />
-                  <span className="name">Female</span>
+                  <span className="name">{languageText.female}</span>
                 </label>
               </div>
             </div>
             {showErrorPopup && <ErrorPopup message={validationError} />}
             {showSavePopup && (
-              <ErrorPopup
-                message="Successfully saved changes"
-                className="green"
-              />
+              <ErrorPopup message={languageText.saved} className="green" />
             )}
           </div>
 
@@ -237,7 +246,7 @@ const Profile = () => {
             onClick={saveChanges}
             disabled={!isFormChanged}
           >
-            Save Changes
+            {languageText.button}
           </button>
         </div>
       )}

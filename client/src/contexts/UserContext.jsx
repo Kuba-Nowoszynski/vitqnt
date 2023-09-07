@@ -3,6 +3,9 @@ import { createContext } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import { englishText } from "./englishText";
+import { polishText } from "./polishText";
+
 const apiUrl =
   import.meta.env.VITE_ENV === "production"
     ? "https://vitqnt-backend.onrender.com/api"
@@ -17,7 +20,10 @@ export const UserContext = createContext({
 export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // Add loading state
-  const [language, setLanguage] = useState("english");
+  const [language, setLanguage] = useState(
+    localStorage.getItem("selectedLanguage") || "english"
+  );
+  const [languageText, setLanguageText] = useState(englishText);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -37,7 +43,19 @@ export const UserContextProvider = ({ children }) => {
     getUserData();
   }, []);
 
-  const value = { user, setUser, loading, apiUrl, language, setLanguage };
+  useEffect(() => {
+    setLanguageText(language === "english" ? englishText : polishText);
+  }, [language]);
+
+  const value = {
+    user,
+    setUser,
+    loading,
+    apiUrl,
+    language,
+    setLanguage,
+    languageText,
+  };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

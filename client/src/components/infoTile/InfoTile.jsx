@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 import { motion } from "framer-motion";
 import "./InfoTile.scss";
 
@@ -11,6 +12,9 @@ const InfoTile = ({
   isAnyTileExpanded,
   vitaminImg,
 }) => {
+  const {
+    languageText: { info: languageText },
+  } = useContext(UserContext);
   const [isExpanded, setIsExpanded] = useState(false);
   const [scale, setScale] = useState("");
   // State to hold the coordinates for animating the expansion
@@ -29,7 +33,7 @@ const InfoTile = ({
 
       // Calculate the scale value based on screen width
       const screenWidth = window.innerWidth;
-      const scale = screenWidth <= 992 ? 1.3 : 2;
+      const scale = screenWidth <= 992 ? 1.15 : 1.9;
       setScale(scale); // Add this line to set the scale value
     }
   };
@@ -57,7 +61,7 @@ const InfoTile = ({
       <div className="tile-header pb-2">
         {isExpanded && (
           <h2>
-            Vitamin {name[0].toUpperCase()}
+            {languageText.vitamin} {name[0].toUpperCase()}
             {name.length > 1 && <sub>{name.slice(1)}</sub>}
           </h2>
         )}

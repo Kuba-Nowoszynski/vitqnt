@@ -8,7 +8,7 @@ export const vitaminFoods = [
       c: 20,
       b6: 17.5,
       b7: 10,
-      e: 5,
+      e: 4,
     },
   },
   {
@@ -18,7 +18,8 @@ export const vitaminFoods = [
     vitamins: {
       a: 200,
       k: 15,
-      b6: 5,
+      b6: 3,
+      b7: 2,
     },
   },
   {
@@ -30,8 +31,9 @@ export const vitaminFoods = [
       c: 100,
       k: 550,
       b2: 15,
-      b6: 10,
-      e: 10,
+      b6: 7,
+      b7: 6,
+      e: 8,
     },
   },
   {
@@ -39,12 +41,25 @@ export const vitaminFoods = [
     description: "Whole Grains (Brown Rice, Whole Wheat, Oats)",
     isVegan: true,
     vitamins: {
-      b1: 10,
+      b1: 15,
       b2: 5,
       b3: 15,
       b5: 8,
-      b6: 5,
+      b6: 8,
       b7: 7,
+    },
+  },
+  {
+    name: "cereal",
+    description: "Cereal",
+    isVegan: true,
+    vitamins: {
+      b1: 20,
+      b2: 15,
+      b3: 15,
+      b5: 10,
+      b6: 20,
+      d: 25,
     },
   },
   {
@@ -52,12 +67,13 @@ export const vitaminFoods = [
     description: "Legumes (Beans, Lentils, Chickpeas)",
     isVegan: true,
     vitamins: {
-      b1: 15,
+      b1: 20,
       b2: 5,
       b3: 10,
-      b5: 5,
+      b5: 10,
       b6: 10,
-      b9: 10,
+      b7: 5,
+      b9: 23,
     },
   },
   {
@@ -69,9 +85,9 @@ export const vitaminFoods = [
       b2: 5,
       b3: 5,
       b6: 5,
-      b7: 20,
+      b7: 15,
       b9: 10,
-      e: 30,
+      e: 35,
     },
   },
   {
@@ -79,10 +95,12 @@ export const vitaminFoods = [
     description: "Seeds (Sunflower Seeds, Pumpkin Seeds)",
     isVegan: true,
     vitamins: {
-      b1: 10,
+      b1: 25,
+      b5: 20,
       b6: 10,
-      b9: 15,
-      e: 30,
+      b7: 10,
+      b9: 18,
+      e: 40,
       k: 10,
     },
   },
@@ -91,13 +109,15 @@ export const vitaminFoods = [
     description: "Avocado",
     isVegan: true,
     vitamins: {
-      b5: 10,
       e: 10,
       k: 10,
       c: 10,
+      b1: 6,
+      b5: 30,
+
       b6: 10,
-      b7: 6,
-      b9: 10,
+      b7: 5,
+      b9: 5,
     },
   },
   {
@@ -117,7 +137,7 @@ export const vitaminFoods = [
     vitamins: {
       b6: 10,
       c: 10,
-      b9: 10,
+      b9: 5,
     },
   },
   {
@@ -126,7 +146,8 @@ export const vitaminFoods = [
     isVegan: true,
     vitamins: {
       c: 25,
-      b1: 10,
+      b1: 18,
+      b9: 10,
     },
   },
   {
@@ -181,6 +202,7 @@ export const vitaminFoods = [
       k: 120,
       e: 10,
       b6: 5,
+      b7: 5,
     },
   },
   {
@@ -204,6 +226,20 @@ export const vitaminFoods = [
       k: 10,
     },
   },
+  {
+    name: "watermelon",
+    description: "Watermelon",
+    isVegan: true,
+    vitamins: {
+      b1: 5,
+      b3: 3,
+      b5: 7,
+      b6: 15,
+      b9: 4,
+      a: 17,
+      c: 32,
+    },
+  },
 
   {
     name: "asparagus",
@@ -211,9 +247,9 @@ export const vitaminFoods = [
     isVegan: true,
     vitamins: {
       b2: 5,
-      b9: 10,
-      k: 60,
       b6: 5,
+      b9: 60,
+      k: 60,
       c: 20,
       a: 20,
     },
@@ -267,9 +303,11 @@ export const vitaminFoods = [
     vitamins: {
       b1: 15,
       b2: 10,
-      b6: 20,
+      b5: 8,
+      b6: 25,
+      b7: 4,
       b9: 5,
-      e: 6,
+      e: 10,
     },
   },
   {
@@ -290,8 +328,11 @@ export const vitaminFoods = [
     description: "Fortified Plant Milks (Almond, Soy, Rice)",
     isVegan: true,
     vitamins: {
+      b1: 10,
+      b5: 7,
+      b7: 3,
       b12: 15,
-      d: 20,
+      d: 25,
       a: 10,
     },
   },
@@ -300,6 +341,8 @@ export const vitaminFoods = [
     description: "Nutritional Yeast",
     isVegan: true,
     vitamins: {
+      b1: 5,
+      b5: 7,
       b7: 12,
       b12: 40,
     },
@@ -325,22 +368,41 @@ export const vitaminFoods = [
     },
   },
   {
+    name: "tofu",
+    description: "Tofu",
+    isVegan: true,
+    vitamins: {
+      b1: 12,
+      b2: 7,
+      b3: 7,
+      b5: 7,
+      b6: 7,
+      b7: 7,
+      b9: 7,
+      d: 15,
+    },
+  },
+  {
     name: "chicken",
-    description: "Lean Meat (Pork, Chicken, Beef)",
+    description: "Lean Meat (Beef, Pork, Poultry)",
     isVegan: false,
     vitamins: {
+      a: 2,
       b1: 10,
       b2: 15,
-      b3: 15,
+      b3: 55,
       b5: 10,
-      b6: 10,
+      b6: 35,
+      b9: 5,
       b12: 15,
-      d: 5,
+      d: 2,
+      e: 7,
+      k: 5,
     },
   },
   {
     name: "dairy",
-    description: "Dairy and Fortified Dairy Products (Milk, Yogurt, Cheese)",
+    description: "Dairy Products (Milk, Yogurt, Cheese)",
     isVegan: false,
     vitamins: {
       b2: 15,
@@ -355,12 +417,14 @@ export const vitaminFoods = [
     description: "Eggs",
     isVegan: false,
     vitamins: {
+      b1: 10,
       b2: 15,
-      b5: 10,
+      b5: 30,
       b7: 20,
       b12: 15,
       d: 15,
       a: 10,
+      e: 5,
     },
   },
   {
@@ -369,12 +433,14 @@ export const vitaminFoods = [
     isVegan: false,
     vitamins: {
       b2: 25,
-      b3: 50,
+      b3: 60,
       b5: 15,
       b6: 55,
+      b7: 15,
       b12: 50,
-      d: 500,
+      d: 300,
       a: 50,
+      e: 8,
     },
   },
   {
@@ -383,11 +449,13 @@ export const vitaminFoods = [
     isVegan: false,
     vitamins: {
       a: 600,
+      b1: 25,
       b2: 200,
       b3: 80,
       b5: 60,
       b6: 70,
-      b9: 65,
+      b7: 8,
+      b9: 90,
       b12: 1500,
     },
   },
@@ -396,40 +464,13 @@ export const vitaminFoods = [
     description: "Shellfish",
     isVegan: false,
     vitamins: {
-      b12: 300,
+      b3: 25,
+      b6: 25,
+      b12: 200,
+      a: 7,
+      c: 15,
+      d: 15,
+      e: 7,
     },
   },
 ];
-
-// The reason of this list is that I would like user to choose which of the following foods he has eaten in the last few days and based on this I would like to response if it's possible that he is deficient in particular vitamin
-
-//more food with: b1, b6, b7, b9, e
-// https://www.realsimple.com/health/nutrition-diet/vitamin-b-foods
-//tofu, beef, green, peas
-// B-1: ham, soymilk, watermelon, acorn squash
-
-// B-2: milk, yogurt, cheese, whole and enriched grains and cereals.
-
-// B-3: meat, poultry, fish, fortified and whole grains, mushrooms, potatoes
-
-// B-5: chicken, whole grains, broccoli, avocados, mushrooms
-
-// B-6: meat, fish, poultry, legumes, tofu and other soy products, bananas
-
-// B-7: Whole grains, eggs, soybeans, fish
-
-// B-9: Fortified grains and cereals, asparagus, spinach, broccoli, legumes (black-eyed peas and chickpeas), orange juice
-
-// B-12: Meat, poultry, fish, milk, cheese, fortified soymilk and cereals
-
-// Vitamin C: Citrus fruit, potatoes, broccoli, bell peppers, spinach, strawberries, tomatoes, Brussels sprouts
-
-// Fat soluble:
-
-// Vitamin A: beef, liver, eggs, shrimp, fish, fortified milk, sweet potatoes, carrots, pumpkins, spinach, mangoes
-
-// Vitamin D: Fortified milk and cereals, fatty fish
-
-// Vitamin E: vegetables oils, leafy green vegetables, whole grains, nuts
-
-//Vitamin K: Cabbage, eggs, milk, spinach, broccoli, kale

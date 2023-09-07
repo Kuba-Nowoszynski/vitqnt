@@ -4,7 +4,7 @@
   overflow: hidden;
   background: rgba($pastel-blue, 0.8);
   position: relative;
-  z-index: 200;
+  z-index: 1;
   box-shadow: 0 0 10px 1px rgba(black, 0.21);
   &::before,
   &::after {
@@ -175,17 +175,27 @@
       gap: 1em;
       div {
         transition: all 0.6s ease-in-out;
-        background: rgba($green, 0.6);
-        padding: 1em;
-        border: 0.3em solid $blue;
-        &.flash {
-          background: #e0ecfb;
-          border: 0.3em solid $main;
-          box-shadow: 0 0 10px 3px $main;
-          span::after {
-            background-color: $main;
-          }
+        box-shadow: 0 0 10px 3px $main;
+        background: $pastel-blue;
+        color: $blue;
+        //set different background for every third tile
+        &:nth-child(4n + 1) {
+          background-color: $secondary;
+          color: $green;
         }
+        &:nth-child(4n + 2) {
+          background-color: $blue;
+          color: $pastel-blue;
+          color: $main;
+        }
+        &:nth-child(4n + 3) {
+          background-color: $green;
+        }
+
+        padding: 1em;
+        border: 0.3em solid $main;
+        opacity: 0;
+
         span {
           position: relative;
           &::after {
@@ -196,7 +206,7 @@
             width: 0.3em;
             height: 250%;
             border-radius: 1em;
-            background-color: $blue;
+            background-color: $main;
           }
         }
       }

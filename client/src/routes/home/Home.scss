@@ -1,9 +1,14 @@
 @import "../../variables";
+.home-page {
+  overflow: hidden;
+}
 .home-1 {
   background-image: url("../../assets/banner.png");
   background-repeat: no-repeat;
   background-position: 80% center;
   background-size: contain;
+  position: relative;
+
   .header {
     text-align: left;
     font-family: "Bricolage Grotesque", sans-serif;
@@ -28,8 +33,22 @@
   }
 }
 
+.home-intersection {
+  position: relative;
+  span {
+    background: rgba(#fff, 0.3);
+    font-weight: 700;
+    font-size: 1.5em;
+  }
+  .arrow-down {
+    max-width: 3em;
+    // background: rgba(#fff, 0.3);
+    filter: invert(100%);
+  }
+}
+
 .home-2 {
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   z-index: 1;
   &::before {
@@ -47,18 +66,24 @@
   }
   p {
     font-size: 2.5em;
+    @include responsive(
+      font-size,
+      (
+        mobile-small: 2em,
+      )
+    );
     color: white;
     font-weight: 400;
     text-shadow: 2px 2px 5px $blue;
   }
   img {
-    box-shadow: 0 0 1px 10px $green;
+    box-shadow: 0 0 1px 0.5em $green;
     cursor: pointer;
   }
 }
 
 .home-3 {
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   z-index: 1;
   &::before {
@@ -76,12 +101,26 @@
   }
   p {
     font-size: 2.5em;
+    @include responsive(
+      font-size,
+      (
+        mobile-small: 2em,
+      )
+    );
     color: white;
     font-weight: 400;
     text-shadow: 2px 2px 5px $blue;
   }
   img {
-    box-shadow: 0 0 1px 10px rgba($main, 0.8);
+    box-shadow: 0 0 1px 0.5em rgba($main, 0.8);
+
     cursor: pointer;
+  }
+}
+
+.home-4 {
+  h2 {
+    font-size: 3em;
+    text-shadow: -2px 2px 1px white;
   }
 }

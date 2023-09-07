@@ -1,7 +1,7 @@
 @import "../../variables";
 
 .language-switch {
-  background: $pastel-blue;
+  background: rgba($secondary, 0.4);
   height: 2em;
   width: 4em;
   position: relative;
@@ -19,7 +19,7 @@
     background-image: url("../../assets/icons/english.png");
   }
   &.changed {
-    background: $blue;
+    background: rgba($secondary, 0.7);
     .switch-button {
       transform: translateX(135%);
       background-image: url("../../assets/icons/polish.png");

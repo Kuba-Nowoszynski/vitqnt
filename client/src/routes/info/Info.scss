@@ -6,6 +6,12 @@
     color: black;
   }
   width: 90%;
+  @include responsive(
+    width,
+    (
+      mobile-small: 95%,
+    )
+  );
   background: rgba($pastel-blue, 0.3);
   position: relative;
   overflow: hidden;

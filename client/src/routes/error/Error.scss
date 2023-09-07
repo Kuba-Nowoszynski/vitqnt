@@ -6,7 +6,7 @@
     background: rgba($main, 1);
     transition: all 0.25s ease-in-out;
     &:hover {
-      color: #dad5d5cc;
+      color: $pastel-blue;
       box-shadow: 0 0 10px 1px rgba(white, 0.3);
     }
   }

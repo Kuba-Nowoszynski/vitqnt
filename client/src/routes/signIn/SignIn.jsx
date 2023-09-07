@@ -5,9 +5,15 @@ import { UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import ErrorPopup from "../../components/errorPopup/ErrorPopup";
 
+import useSound from "use-sound";
+import retroSound from "../../assets/sounds/retro-sound.wav";
+import buzzSound from "../../assets/sounds/buzz-sound.wav";
+
 import "./SignIn.scss";
 
 const SignIn = () => {
+  const [playRetro] = useSound(retroSound);
+  const [playBuzz] = useSound(buzzSound);
   const navigate = useNavigate();
   const [isFormValid, setIsFormValid] = useState(false); // Track form validity
   const [validationError, setValidationError] = useState(""); // State for validation error message
@@ -18,7 +24,12 @@ const SignIn = () => {
     email: "",
     password: "",
   });
-  const { user, loading, apiUrl } = useContext(UserContext);
+  const {
+    user,
+    loading,
+    apiUrl,
+    languageText: { signIn: languageText },
+  } = useContext(UserContext);
   //redirect user if signed in
   useEffect(() => {
     if (!loading && user) {
@@ -45,12 +56,13 @@ const SignIn = () => {
     e.preventDefault();
     if (!isFormValid) {
       if (!formData.email.trim()) {
-        setValidationError("Email cannot be empty");
+        setValidationError(languageText.errorEmptyEmail);
       } else if (!formData.password.trim()) {
-        setValidationError("Password cannot be empty");
+        setValidationError(languageText.errorEmptyPassword);
       } else {
-        setValidationError("Email is not valid");
+        setValidationError(languageText.errorInvalidEmail);
       }
+      playBuzz();
 
       setShowErrorPopup(true); // Show error popup when form is not valid
       setIsDisabled(true); //prevent from clicking button
@@ -68,13 +80,20 @@ const SignIn = () => {
         const response = await axios.post(`${apiUrl}/signin`, formData, {
           withCredentials: true, // Enable sending cookies
         });
-
-        navigate("/");
-        window.location.reload(); // make sure that the changes from UserContext are applied
-        console.log(response.data.message); // Handle the response as needed
+        playRetro();
+        setTimeout(async () => {
+          navigate("/");
+          window.location.reload(); // make sure that the changes from UserContext are applied
+        }, 600);
       } catch (error) {
         setIsFormValid(false);
-        setValidationError(error.response.data.message);
+        const errorMesage =
+          error.response.data.message === "Incorrect password"
+            ? languageText.errorIncorrectPassword
+            : error.response.data.message === "User not found"
+            ? languageText.errorUserNotFound
+            : languageText.errorNotVerified;
+        setValidationError(errorMesage);
         setShowErrorPopup(true); // Show error popup when form is not valid
         setIsDisabled(true); //prevent from clicking button
         // Set a timeout to hide the error popup after 2 seconds
@@ -100,12 +119,12 @@ const SignIn = () => {
               onSubmit={!isDisabled ? handleSignin : null}
               autoComplete="on"
             >
-              <span className="title">Sign in</span>
-              <span className="subtitle">Sign in to your account</span>
+              <span className="title">{languageText.header}</span>
+              <span className="subtitle">{languageText.subheader}</span>
               <div className="form-container d-flex flex-column flex-sm-row rounded-5 my-3">
                 <input
                   type="email"
-                  placeholder="Email"
+                  placeholder={languageText.placeholderEmail}
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
@@ -114,7 +133,7 @@ const SignIn = () => {
                 />
                 <input
                   type="password"
-                  placeholder="Password"
+                  placeholder={languageText.placeholderPassword}
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
@@ -127,12 +146,13 @@ const SignIn = () => {
                 onClick={handleSignin}
                 disabled={isDisabled}
               >
-                Sign in
+                {languageText.button}
               </button>
             </form>
             <div className="form-section text-center p-4">
               <p className="py-2">
-                No account? <NavLink to="/sign-up">Sign up</NavLink>
+                {languageText.noAccount}{" "}
+                <NavLink to="/sign-up">{languageText.signUp}</NavLink>
               </p>
             </div>
           </div>

@@ -6,12 +6,25 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import ErrorPopup from "../../components/errorPopup/ErrorPopup";
+
+import useSound from "use-sound";
+import buzzSound from "../../assets/sounds/buzz-sound.wav";
+import bellsSound from "../../assets/sounds/bells-sound.wav";
 import emailImg from "../../assets/email-account.png";
 import "./SignUp.scss";
 
 let hasRun = false; // prevents double render && double request
 const SignUp = () => {
+  const [playBells] = useSound(bellsSound);
+  const [playBuzz] = useSound(buzzSound);
   const navigate = useNavigate();
+  const {
+    user,
+    loading,
+    apiUrl,
+    languageText: { signUp: languageText },
+  } = useContext(UserContext);
+
   const [isFormValid, setIsFormValid] = useState(false); // Track form validity
   const [validationError, setValidationError] = useState(""); // State for validation error message
   const [isDisabled, setIsDisabled] = useState(false); //prevent from multiple submites
@@ -25,7 +38,6 @@ const SignUp = () => {
   });
   const [isAnimated, setIsAnimated] = useState(false);
   const [isCreated, setIsCreated] = useState(false);
-  const { user, loading, apiUrl } = useContext(UserContext);
   //redirect user if signed in
 
   useEffect(() => {
@@ -57,15 +69,13 @@ const SignUp = () => {
       nameIsValid && emailIsValid && passwordIsValid && ageIsValid
     );
     if (!nameIsValid) {
-      setValidationError("Name should be alphabetic, max 50 characters");
+      setValidationError(languageText.errorInvalidName);
     } else if (!emailIsValid) {
-      setValidationError("Email is not valid");
+      setValidationError(languageText.errorInvalidEmail);
     } else if (!passwordIsValid) {
-      setValidationError(
-        "Password must be 8+ characters long, with 1 uppercase and 1 special character"
-      );
+      setValidationError(languageText.errorInvalidPassword);
     } else if (!ageIsValid) {
-      setValidationError("Age must be between 0 and 90");
+      setValidationError(languageText.errorInvalidAge);
     } else {
       setValidationError("");
     }
@@ -80,7 +90,8 @@ const SignUp = () => {
       e.preventDefault();
       if (isFormValid) {
         try {
-          const response = await axios.post(`${apiUrl}/signup`, formData);
+          await axios.post(`${apiUrl}/signup`, formData);
+          playBells();
           hasRun = true;
           setIsAnimated(true);
 
@@ -97,15 +108,15 @@ const SignUp = () => {
       } else {
         // Check if any of the input fields are empty
         if (!formData.name.trim()) {
-          setValidationError("Name cannot be empty");
+          setValidationError(languageText.errorEmptyName);
         } else if (!formData.email.trim()) {
-          setValidationError("Email cannot be empty");
+          setValidationError(languageText.errorEmptyEmail);
         } else if (!formData.password.trim()) {
-          setValidationError("Password cannot be empty");
+          setValidationError(languageText.errorEmptyPassword);
         } else if (!formData.age.trim()) {
-          setValidationError("Age cannot be empty");
+          setValidationError(languageText.errorEmptyAge);
         }
-
+        playBuzz();
         setShowErrorPopup(true); // Show error popup when form is not valid
         setIsDisabled(true); //prevent from clicking button
         // Set a timeout to hide the error popup after 2 seconds
@@ -135,14 +146,12 @@ const SignUp = () => {
                 className="form mx-auto py-4 px-4 text-center d-flex flex-column  gap-3"
                 autoComplete="on"
               >
-                <span className="title">Sign up</span>
-                <span className="subtitle">
-                  Create a free account with your email
-                </span>
+                <span className="title">{languageText.header}</span>
+                <span className="subtitle">{languageText.subheader}</span>
                 <div className="form-container d-flex flex-column flex-sm-row rounded-5 my-3">
                   <input
                     type="text"
-                    placeholder="Full Name"
+                    placeholder={languageText.placeholderName}
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
@@ -151,7 +160,7 @@ const SignUp = () => {
                   />
                   <input
                     type="email"
-                    placeholder="Email"
+                    placeholder={languageText.placeholderEmail}
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
@@ -160,7 +169,7 @@ const SignUp = () => {
                   />
                   <input
                     type="password"
-                    placeholder="Password"
+                    placeholder={languageText.placeholderPassword}
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
@@ -169,7 +178,7 @@ const SignUp = () => {
                   />
                   <input
                     type="number"
-                    placeholder="Age"
+                    placeholder={languageText.placeholderAge}
                     name="age"
                     value={formData.age}
                     onChange={handleChange}
@@ -184,12 +193,13 @@ const SignUp = () => {
                   onClick={handleSignup}
                   disabled={isDisabled}
                 >
-                  Sign up
+                  {languageText.button}
                 </button>
               </form>
               <div className="form-section text-center p-4">
                 <p className="py-2">
-                  Have an account? <NavLink to="/sign-in">Log in</NavLink>
+                  {languageText.haveAnAccount}{" "}
+                  <NavLink to="/sign-in">{languageText.logIn}</NavLink>
                 </p>
               </div>
             </div>
@@ -198,8 +208,9 @@ const SignUp = () => {
             <div className="verify-email animate__animated animate__fadeIn mx-auto my-3 py-3 col-11 col-md-6 col-lg-5   d-flex flex-column justify-content-evenly align-items-center  rounded-5 text-center">
               <img src={emailImg} alt="Verify Email" />
               <h1 className="mt-2">
-                Account created. <br />
-                Please verify your email.
+                {languageText.accountCreated}
+                <br />
+                {languageText.verifyEmail}
               </h1>
             </div>
           )}

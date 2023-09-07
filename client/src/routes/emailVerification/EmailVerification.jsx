@@ -13,7 +13,12 @@ let hasRun = false; // prevents double render && double request
 
 const EmailVerification = () => {
   const navigate = useNavigate();
-  const { apiUrl, loading, user } = useContext(UserContext);
+  const {
+    apiUrl,
+    loading,
+    user,
+    languageText: { emailVerification: languageText },
+  } = useContext(UserContext);
   const [isVerified, setIsVerified] = useState(false);
   const [hasExpired, setHasExpired] = useState(false);
   const [animateClasses, setAnimateClasses] = useState(
@@ -49,7 +54,6 @@ const EmailVerification = () => {
               withCredentials: true, // Enable sending cookies
             }
           );
-          console.log(response.data);
           setIsVerified(true);
           startTimers();
         } catch (error) {
@@ -77,16 +81,16 @@ const EmailVerification = () => {
           className={`email-verified  col-11 col-md-8 col-xl-5 mx-auto my-2 rounded-5 d-flex flex-column justify-content-evenly align-items-center text-center ${animateClasses}`}
         >
           <img src={verifiedImg} alt="Email verified" className="img-fluid" />
-          <h1 className=""> Email successfully verified!</h1>
+          <h1 className="">{languageText.verified}</h1>
         </div>
       )}
       {!loading && !isVerified && hasExpired && (
         <div className="position-expired my-5 my-md-2 d-flex flex-column justify-content-center">
           <div className="expired animate__animated animate__bounceIn col-11 col-md-10 mx-auto my-auto d-flex flex-column justify-content-center align-items-center text-center rounded-5">
             <h1 className="">
-              Your verifaction link has expired
+              {languageText.expired}
               <NavLink to="/sign-up" className="again mt-3 py-3 rounded-5">
-                Sign up again
+                {languageText.signAgain}
               </NavLink>
             </h1>
           </div>

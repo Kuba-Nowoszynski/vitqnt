@@ -5,6 +5,7 @@ const crypto = require("crypto");
 const {
   sendVerificationEmail,
   verifyEmailTransporter,
+  sendContactFormEmail,
 } = require("../helpers/emailHelper");
 const { handleStaleUser } = require("../helpers/staleUserHelper");
 const setVitaminIntake = require("../utils/setVitaminIntake");
@@ -38,7 +39,7 @@ exports.signup = async (req, res) => {
 
     res.json({ user });
   } catch (error) {
-    console.error("Error signing up:", error);
+    console.error("Error during sign up:", error);
     res.status(500).json({ error: "An error occurred" });
   }
 };
@@ -83,6 +84,11 @@ exports.signin = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
       return res.status(401).json({ message: "User not found" });
+    }
+    if (!user.isVerified) {
+      return res
+        .status(401)
+        .json({ message: "Your account has not been verified" });
     }
     const isValidPassword = await comparePassword(
       req.body.password,
@@ -163,5 +169,20 @@ exports.updateProfile = async (req, res) => {
   } catch (error) {
     console.error("Error updating profile:", error);
     res.status(500).json({ message: "An error occurred" });
+  }
+};
+
+exports.sendContactForm = (req, res) => {
+  verifyEmailTransporter();
+  try {
+    const { email, subject, message } = req.body;
+
+    sendContactFormEmail(email, subject, message);
+    return res.status(200).json({ message: "Email sent successfully" });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ message: "An error occurred while processing the contact form" });
   }
 };

@@ -12,5 +12,6 @@ router.post("/signin", authController.signin);
 router.get("/getuser", authenticate, authController.getUser);
 router.post("/signout", authController.signout);
 router.put("/updateprofile", authenticate, authController.updateProfile);
+router.post("/contact", authController.sendContactForm);
 
 module.exports = router;

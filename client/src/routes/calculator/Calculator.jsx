@@ -7,10 +7,23 @@ import vitaminFunFacts from "./vitaminFunFacts";
 import vitaminSources from "./vitaminSources";
 import vitaminNames from "./vitaminNames";
 
+import useSound from "use-sound";
+import clickSound from "../../assets/sounds/click-sound.wav";
+import tapSound from "../../assets/sounds/tap-sound.wav";
+import wooshSound from "../../assets/sounds/woosh-sound.wav";
+import submitSound from "../../assets/sounds/correct-sound.wav";
 import "./Calculator.scss";
 
 const Calculator = () => {
-  const { user, loading } = useContext(UserContext);
+  const [playClick] = useSound(clickSound);
+  const [playTap] = useSound(tapSound);
+  const [playWoosh] = useSound(wooshSound);
+  const [playSubmit] = useSound(submitSound);
+  const {
+    user,
+    loading,
+    languageText: { calculator: languageText },
+  } = useContext(UserContext);
   const [formData, setFormData] = useState({
     vitamin: "c",
     sex: user?.sex || "male",
@@ -18,7 +31,9 @@ const Calculator = () => {
   });
   const [dailyIntake, setDailyIntake] = useState(null);
   const [response, setResponse] = useState(
-    `Did you know that ${vitaminFunFacts[Math.floor(Math.random() * 13)]}`
+    `${languageText.didYouKnow} ${
+      languageText.vitaminFunFacts[Math.floor(Math.random() * 13)]
+    }`
   );
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -31,6 +46,8 @@ const Calculator = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    if (name === "vitamin") playClick();
+    if (name === "sex") playTap();
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -38,23 +55,22 @@ const Calculator = () => {
   };
 
   const handleSubmit = (event) => {
+    playSubmit();
+
     event.preventDefault();
     setResponse("");
-
     const { vitamin, sex, age } = formData;
     const calculatedIntake = calculateVitaminIntake(vitamin, sex, age);
-    const suggestedFood =
-      vitaminSources[vitamin].slice(0, 2).join(", ") +
-      " and " +
-      vitaminSources[vitamin][2];
+    const suggestedFood = `${languageText.vitaminSources[vitamin]
+      .slice(0, 2)
+      .join(", ")} ${languageText.and} ${vitaminSources[vitamin][2]}`;
 
     setDailyIntake(
-      "Your recommended daily intake of vitamin " +
-        vitamin.toUpperCase() +
-        " amounts to " +
-        calculatedIntake +
-        ". Great recommended vitamin sources include " +
-        suggestedFood
+      `${languageText.recommendedIntake} ${vitamin.toUpperCase()} ${
+        languageText.amountsTo
+      } ${calculatedIntake}. ${
+        languageText.recommendedSources
+      } ${suggestedFood}.`
     );
   };
 
@@ -78,18 +94,18 @@ const Calculator = () => {
         <Loader />
       ) : (
         <div className="animate__animated animate__fadeInLeft calculator mx-auto">
-          <h1 className="text-center p-3 mx-auto rounded my-4 my-sm-2">
-            Vitamin Intake Calculator
+          <h1 className="text-center p-2 mx-auto rounded my-4 my-sm-2">
+            {languageText.header}
           </h1>
 
           <div className="row p-0 g-0 mt-2">
             <form
               className="col-12 col-md-6  d-flex flex-column justify-content-evenly mt-5 mt-sm-0"
-              onSubmit={!currentIndex && handleSubmit}
+              onSubmit={!currentIndex ? handleSubmit : null}
             >
               <div>
                 {" "}
-                <h3 className="text-center py-3">Choose your vitamin</h3>
+                <h3 className="text-center py-3">{languageText.choose}</h3>
                 <div className="vitamin-radio d-flex flex-wrap  gap-3 justify-content-center ">
                   {vitaminNames.map((name, index) => (
                     <input
@@ -107,7 +123,7 @@ const Calculator = () => {
 
               <div>
                 <h3 htmlFor="age" className="age-display text-center py-3 ">
-                  Age: {formData.age}
+                  {languageText.age}: {formData.age}
                 </h3>
                 <div className="age-range d-flex justify-content-evenly">
                   {Array.from({ length: 5 }, (_, index) => (
@@ -126,6 +142,8 @@ const Calculator = () => {
                   name="age"
                   value={formData.age}
                   onChange={handleInputChange}
+                  onMouseDown={playWoosh}
+                  onMouseUp={playWoosh}
                 />
               </div>
 
@@ -138,7 +156,7 @@ const Calculator = () => {
                     checked={formData.sex === "male"}
                     onChange={handleInputChange}
                   />
-                  <span className="name">Male</span>
+                  <span className="name">{languageText.male}</span>
                 </label>
                 <label className="radio">
                   <input
@@ -148,11 +166,11 @@ const Calculator = () => {
                     checked={formData.sex === "female"}
                     onChange={handleInputChange}
                   />
-                  <span className="name">Female</span>
+                  <span className="name">{languageText.female}</span>
                 </label>
                 <label className="radio">
                   <input type="radio" disabled />
-                  <span className="name sex">sex</span>
+                  <span className="name sex">{languageText.sex}</span>
                 </label>
               </div>
               <Button
@@ -161,7 +179,7 @@ const Calculator = () => {
                 disabled={currentIndex}
               />
             </form>
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-md-6 mt-5 mt-md-0">
               <p className="response  ms-5 mt-4 ">
                 {response ||
                   `Did you know that ${

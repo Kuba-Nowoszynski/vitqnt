@@ -1,6 +1,10 @@
 @import "../../variables";
 
 .tile {
+  opacity: 0; //for animation
+  &.opacity {
+    opacity: 1;
+  }
   cursor: pointer;
   margin: 1em 2em;
   background: $main;

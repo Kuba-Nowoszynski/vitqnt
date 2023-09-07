@@ -3,18 +3,18 @@ import { UserContext } from "../../contexts/UserContext";
 
 import "./LanguageSwitch.scss";
 
-const LanguageSwitch = () => {
+const LanguageSwitch = ({ className }) => {
   const { language, setLanguage } = useContext(UserContext);
 
-  console.log(language);
-
   const handleSwitch = () => {
-    setLanguage((prev) => (prev === "english" ? "polish" : "english"));
+    const newLanguage = language === "polish" ? "english" : "polish";
+    setLanguage(newLanguage);
+    localStorage.setItem("selectedLanguage", newLanguage);
   };
 
   return (
     <div
-      className={`language-switch rounded-pill ${
+      className={`language-switch rounded-pill ${className} ${
         language === "polish" && "changed"
       }`}
     >

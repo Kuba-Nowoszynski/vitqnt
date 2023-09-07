@@ -2,6 +2,7 @@ import sweetPotatoImg from "../../assets/food/sweetPotato.png";
 import carrotImg from "../../assets/food/carrot.png";
 import leafyImg from "../../assets/food/leafy.png";
 import grainsImg from "../../assets/food/grains.png";
+import cerealImg from "../../assets/food/cereal.png";
 import legumeImg from "../../assets/food/legume.png";
 import nutsImg from "../../assets/food/nuts.png";
 import seedsImg from "../../assets/food/seeds.png";
@@ -16,6 +17,7 @@ import strawberryImg from "../../assets/food/strawberry.png";
 import cruciImg from "../../assets/food/cruci.png";
 import grapesImg from "../../assets/food/grapes.png";
 import kiwiImg from "../../assets/food/kiwi.png";
+import watermelonImg from "../../assets/food/watermelon.png";
 import asparagusImg from "../../assets/food/asparagus.png";
 import garlicImg from "../../assets/food/garlic.png";
 import cornImg from "../../assets/food/corn.png";
@@ -27,6 +29,7 @@ import plantMilkImg from "../../assets/food/plantMilk.png";
 import yeastImg from "../../assets/food/yeast.png";
 import chiaImg from "../../assets/food/chia.png";
 import flaxImg from "../../assets/food/flax.png";
+import tofuImg from "../../assets/food/tofu.png";
 import chickenImg from "../../assets/food/chicken.png";
 import dairyImg from "../../assets/food/dairy.png";
 import eggImg from "../../assets/food/egg.png";
@@ -39,6 +42,7 @@ export const foodImages = {
   carrot: carrotImg,
   leafy: leafyImg,
   grains: grainsImg,
+  cereal: cerealImg,
   legume: legumeImg,
   nuts: nutsImg,
   seeds: seedsImg,
@@ -53,6 +57,7 @@ export const foodImages = {
   cruci: cruciImg,
   grapes: grapesImg,
   kiwi: kiwiImg,
+  watermelon: watermelonImg,
   asparagus: asparagusImg,
   garlic: garlicImg,
   corn: cornImg,
@@ -64,6 +69,7 @@ export const foodImages = {
   yeast: yeastImg,
   chia: chiaImg,
   flax: flaxImg,
+  tofu: tofuImg,
   chicken: chickenImg,
   dairy: dairyImg,
   egg: eggImg,

@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
 import fbIcon from "../../assets/fb.svg";
 import xIcon from "../../assets/x.svg";
@@ -7,16 +9,19 @@ import logo from "../../assets/logo.png";
 import "./Footer.scss";
 
 const Footer = () => {
+  const {
+    languageText: { footer: languageText },
+  } = useContext(UserContext);
+
   return (
     <div className="footer rounded-5 rounded-bottom-0  mt-3 py-3 d-flex flex-column flex-lg-row justify-content-evenly align-items-center">
       <NavLink to="/" className="logo">
         <img className="" src={logo} alt="logo" />
       </NavLink>{" "}
-      <div className="links d-block d-flex gap-0 gap-lg-5 justify-content-evenly py-3 ">
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/calculator">Calculator</NavLink>
-        <NavLink to="/info">Info</NavLink>
-        <NavLink to="/recipes">Recipes</NavLink>
+      <div className="links d-block d-flex flex-column flex-sm-row gap-0 gap-lg-5  py-3 justify-content-evenly align-items-center ">
+        <NavLink to="/contact">{languageText.contact}</NavLink>
+        <NavLink to="/about">{languageText.about}</NavLink>
+        <NavLink to="/privacy-policy">{languageText.privacyPolicy}</NavLink>
       </div>
       <div className="d-flex flex-column align-items-center">
         <div className="social-icons d-flex gap-5 py-3">

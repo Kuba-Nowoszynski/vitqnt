@@ -15,6 +15,11 @@ const EmailVerification = lazy(() =>
   import("./routes/emailVerification/EmailVerification")
 );
 const Profile = lazy(() => import("./routes/profile/Profile"));
+const Contact = lazy(() => import("./routes/contact/Contact"));
+const About = lazy(() => import("./routes/about/About"));
+const PrivacyPolicy = lazy(() =>
+  import("./routes/privacyPolicy/PrivacyPolicy")
+);
 
 function App() {
   return (
@@ -29,6 +34,9 @@ function App() {
           <Route path="sign-in" element={<SignIn />} />
           <Route path="verify-email" element={<EmailVerification />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="about" element={<About />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />{" "}
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>

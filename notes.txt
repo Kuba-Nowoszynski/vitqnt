@@ -1,18 +1,23 @@
-4. fix mobile UI/UX
-5. also add sounds to sign-up/in and email verify. And deficit
-6. add pregnant and breastfeeding option to female - calculator + profile (and update algorithm with these 2 options)
-7. create new email (update nodemailer) and add social medias and also domain - godaddy with new email (if no discount with jakubnowoszynski@gmail.com)
+1. add name (VitQnt) under logo left-top
+2. update styling for Email
+4. update home pictures + conditionally render Polish
+5. see home page on mobile
+7. update Polish text
+8. add social medias
 
 
 
-
+To-do
+--------------
 x0. improve SEO (and also for my portfolio)
 x. add recipes 
-x2. handle sign-up validation email already exists + sign-in don't allow if email is not verified
+x2. handle sign-up validation email already exists
 x4. go through all comments - especially on frontend and change logs to messages to user - make separate branch for production (keep console.log and other stuff) and deployment
 x8. prevent from post api signup and if email exists
 1. add sign-in/up and update validation for backend to prevent from eg. postman
 3. prevent from signing up if email already exists
 10. DRY code
 12. move deficit .js files to data and utils folders
+6. add pregnant and breastfeeding option to female - calculator + profile (and update algorithm with these 2 options)
+
 =====
