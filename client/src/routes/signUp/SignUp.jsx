@@ -22,6 +22,7 @@ const SignUp = () => {
     user,
     loading,
     apiUrl,
+    language,
     languageText: { signUp: languageText },
   } = useContext(UserContext);
 
@@ -90,7 +91,7 @@ const SignUp = () => {
       e.preventDefault();
       if (isFormValid) {
         try {
-          await axios.post(`${apiUrl}/signup`, formData);
+          await axios.post(`${apiUrl}/signup`, { formData, language });
           playBells();
           hasRun = true;
           setIsAnimated(true);
@@ -130,6 +131,7 @@ const SignUp = () => {
         };
       }
     }
+    e.preventDefault();
   };
 
   return (

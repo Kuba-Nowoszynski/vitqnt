@@ -4,8 +4,8 @@ import Loader from "../../components/loader/Loader";
 import Button from "../../components/button/Button";
 import calculateVitaminIntake from "../../utils/calculateVitaminIntake";
 import vitaminFunFacts from "./vitaminFunFacts";
-import vitaminSources from "./vitaminSources";
 import vitaminNames from "./vitaminNames";
+import { foodImages } from "../deficit/foodImages";
 
 import useSound from "use-sound";
 import clickSound from "../../assets/sounds/click-sound.wav";
@@ -36,6 +36,7 @@ const Calculator = () => {
     }`
   );
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [randomFoodImg, setRandomFoodImg] = useState(null);
 
   //wait for getting the user data and sets it from context
   useEffect(() => {
@@ -63,7 +64,9 @@ const Calculator = () => {
     const calculatedIntake = calculateVitaminIntake(vitamin, sex, age);
     const suggestedFood = `${languageText.vitaminSources[vitamin]
       .slice(0, 2)
-      .join(", ")} ${languageText.and} ${vitaminSources[vitamin][2]}`;
+      .join(", ")} ${languageText.and} ${
+      languageText.vitaminSources[vitamin][2]
+    }`;
 
     setDailyIntake(
       `${languageText.recommendedIntake} ${vitamin.toUpperCase()} ${
@@ -88,6 +91,12 @@ const Calculator = () => {
     return () => clearInterval(interval);
   }, [currentIndex, dailyIntake, response]);
 
+  //set random img on component mount
+  useEffect(() => {
+    const imagesArray = Object.values(foodImages);
+    const randomIndex = Math.floor(Math.random() * imagesArray.length);
+    setRandomFoodImg(imagesArray[randomIndex]);
+  }, []);
   return (
     <>
       {loading ? (
@@ -100,13 +109,13 @@ const Calculator = () => {
 
           <div className="row p-0 g-0 mt-2">
             <form
-              className="col-12 col-md-6  d-flex flex-column justify-content-evenly mt-5 mt-sm-0"
+              className="col-12 col-md-6  d-flex flex-column justify-content-between mt-md-3 mb-xl-4"
               onSubmit={!currentIndex ? handleSubmit : null}
             >
               <div>
                 {" "}
                 <h3 className="text-center py-3">{languageText.choose}</h3>
-                <div className="vitamin-radio d-flex flex-wrap  gap-3 justify-content-center ">
+                <div className="vitamin-radio d-flex flex-wrap  gap-3 justify-content-center col-xl-8 mx-auto">
                   {vitaminNames.map((name, index) => (
                     <input
                       key={index}
@@ -147,7 +156,7 @@ const Calculator = () => {
                 />
               </div>
 
-              <div className="radio-inputs my-3 ">
+              <div className="radio-inputs my-3">
                 <label className="radio">
                   <input
                     type="radio"
@@ -174,8 +183,8 @@ const Calculator = () => {
                 </label>
               </div>
               <Button
-                text="Check"
-                className="d-block mx-auto"
+                text={languageText.button}
+                className="d-block mx-auto mb-md-0"
                 disabled={currentIndex}
               />
             </form>
@@ -186,6 +195,11 @@ const Calculator = () => {
                     vitaminFunFacts[Math.floor(Math.random() * 13)]
                   }`}
               </p>
+              <img
+                src={randomFoodImg}
+                alt="random food img"
+                className="food-img d-none d-xl-block m-auto ms-auto"
+              />
             </div>
           </div>
         </div>

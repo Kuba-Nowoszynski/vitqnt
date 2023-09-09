@@ -12,7 +12,8 @@ const setVitaminIntake = require("../utils/setVitaminIntake");
 
 exports.signup = async (req, res) => {
   try {
-    const { name, email, password, age } = req.body;
+    const { name, email, password, age } = req.body.formData;
+    const { language } = req.body;
     // Email verification
     const verifyToken = crypto.randomBytes(32).toString("hex");
     const verifyTokenExpires = new Date();
@@ -35,7 +36,7 @@ exports.signup = async (req, res) => {
     setTimeout(() => handleStaleUser(verifyToken), 15 * 60 * 1000); // 15 minutes in milliseconds
     // Handle email verification
     verifyEmailTransporter(); // use helper function
-    sendVerificationEmail(user, verifyToken); // use helper function
+    sendVerificationEmail(user, verifyToken, language); // use helper function
 
     res.json({ user });
   } catch (error) {

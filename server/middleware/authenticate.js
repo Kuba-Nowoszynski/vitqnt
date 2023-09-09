@@ -5,7 +5,8 @@ const authenticate = (req, res, next) => {
   const token = req.cookies.token;
   // If no token is provided, return an unauthorized error
   if (!token) {
-    return res.status(401).json({ message: "Unauthorized" });
+    // return res.status(401).json({ message: "Unauthorized" });
+    return res.json({ message: "Unauthorized" }); //for production - user doesn't see the log when not signed in
   }
 
   try {
@@ -16,7 +17,7 @@ const authenticate = (req, res, next) => {
   } catch (error) {
     // If the token is invalid or expired, log the error and return an unauthorized error
     console.error(error);
-    res.status(401).json({ message: "Unauthorized" });
+    return res.status(401).json({ message: "Unauthorized" });
   }
 };
 

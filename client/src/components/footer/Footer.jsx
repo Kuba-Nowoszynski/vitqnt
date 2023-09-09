@@ -26,21 +26,21 @@ const Footer = () => {
       <div className="d-flex flex-column align-items-center">
         <div className="social-icons d-flex gap-5 py-3">
           <a
-            href="https://www.example.com"
+            href="https://www.facebook.com/people/VitQnt/61550861919853/"
             target="_blank"
             rel="noopener noreferrer"
           >
             <img src={fbIcon} alt="fbIcon" />
           </a>
           <a
-            href="https://www.example.com"
+            href="https://twitter.com/QntVit65685"
             target="_blank"
             rel="noopener noreferrer"
           >
             <img src={xIcon} alt="xIcon" />
           </a>
           <a
-            href="https://www.example.com"
+            href="https://www.instagram.com/vitqnt/"
             target="_blank"
             rel="noopener noreferrer"
           >

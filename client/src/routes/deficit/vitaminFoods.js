@@ -54,12 +54,15 @@ export const vitaminFoods = [
     description: "Cereal",
     isVegan: true,
     vitamins: {
+      a: 20,
       b1: 20,
-      b2: 15,
-      b3: 15,
-      b5: 10,
+      b2: 20,
+      b3: 20,
+      b5: 20,
       b6: 20,
+      b9: 20,
       d: 25,
+      e: 20,
     },
   },
   {
@@ -114,7 +117,6 @@ export const vitaminFoods = [
       c: 10,
       b1: 6,
       b5: 30,
-
       b6: 10,
       b7: 5,
       b9: 5,
@@ -329,9 +331,10 @@ export const vitaminFoods = [
     isVegan: true,
     vitamins: {
       b1: 10,
+      b2: 25,
       b5: 7,
       b7: 3,
-      b12: 15,
+      b12: 25,
       d: 25,
       a: 10,
     },

@@ -98,6 +98,8 @@
     background-color: #e0ecfb;
     box-shadow: rgb(0 0 0 / 8%) 0 -1px;
     a {
+      position: relative;
+      z-index: 2;
       font-weight: bold;
       color: #0066ff;
       transition: color 0.3s ease;

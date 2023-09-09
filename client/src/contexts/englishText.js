@@ -7,9 +7,10 @@ export const englishText = {
   },
   home: {
     header: "Crunching Numbers, Boosting Health!",
-    subheader: `Discover your personalized daily nutrient needs, delve into detailed
+    subheader: `Discover your personalized daily vitamin needs, delve into detailed
 vitamin insights, and analyze your diet for optimal health.
-Plus, enjoy recipe suggestions!`,
+Additionally, savor some delectable recipe recommendations!`,
+    button: "Let's go!",
     scroll: "Scroll down to see more",
     calculatorDescription: `Discover your daily vitamin needs in seconds! Choose your vitamin,
               enter your age and sex, and get personalized recommendations.
@@ -49,7 +50,7 @@ Plus, enjoy recipe suggestions!`,
       b5: ["avocado", "sunflower seeds", "sweet potatoes"],
       b6: ["chickpeas", "bananas", "oats"],
       b7: ["almonds", "sunflower seeds", "sweet potatoes"],
-      b9: ["lentils", "spinach", "avocado"],
+      b9: ["lentils", "spinach", "liver"],
       b12: [
         "fortified plant-based milk",
         "nutritional yeast",
@@ -66,6 +67,7 @@ Plus, enjoy recipe suggestions!`,
     male: "Male",
     female: "Female",
     sex: "Sex",
+    button: "Check",
   },
   info: {
     header: "Understanding Vitamins",
@@ -98,8 +100,8 @@ Plus, enjoy recipe suggestions!`,
     foodDescriptions: {
       sweetPotato: "Sweet Potatoes",
       carrot: "Carrots",
-      leafy: "Leafy Greens (Spinach, Kale)",
-      grains: "Whole Grains (Brown Rice, Whole Wheat, Oats)",
+      leafy: "Leafy Greens (Spinach, Kale, Arugula)",
+      grains: "Whole Grains (Brown Rice, Rye Bread, Oats)",
       cereal: "Cereal",
       legume: "Legumes (Beans, Lentils, Chickpeas)",
       nuts: "Nuts (Almonds, Walnuts, Peanuts)",
@@ -107,12 +109,12 @@ Plus, enjoy recipe suggestions!`,
       avocado: "Avocado",
       mushrooms: "Mushrooms",
       banana: "Bananas",
-      citrus: "Citrus Fruits (Oranges, Grapefruits)",
-      pepper: "Bell Peppers",
-      berries: "Berries (Blueberries, Raspberries)",
+      citrus: "Citrus Fruits (Oranges, Grapefruits, Tangerines)",
+      pepper: "Bell Pepper",
+      berries: "Berries (Blueberries, Raspberries, Cranberries)",
       tomato: "Tomatoes",
       strawberry: "Strawberries",
-      cruci: "Cruciferous Vegetables (Broccoli, Brussels Sprouts)",
+      cruci: "Cruciferous Vegetables (Broccoli, Cauliflower, Brussels Sprouts)",
       grapes: "Grapes",
       kiwi: "Kiwifruit",
       watermelon: "Watermelon",
@@ -140,7 +142,7 @@ Plus, enjoy recipe suggestions!`,
   signUp: {
     header: "Sign up",
     subheader: "Create a free account with your email",
-    placeholderName: "Full Name",
+    placeholderName: "Name",
     placeholderEmail: "Email",
     placeholderPassword: "Password",
     placeholderAge: "Age",
@@ -176,13 +178,13 @@ Plus, enjoy recipe suggestions!`,
   },
   profile: {
     header: "Your Profile",
-    dailyIntake: "Your daily vitamin intake",
+    dailyIntake: "Recommended daily dose of vitamins",
     vitamin: "Vitamin",
     name: "Name",
     email: "Email",
     age: "Age",
     sex: "Sex",
-    placeholderName: "Full Name",
+    placeholderName: "Name",
     placeholderEmail: "Email",
     placeholderAge: "Not set",
     male: "Male",
@@ -220,42 +222,41 @@ Plus, enjoy recipe suggestions!`,
     welcome: "Welcome to VitQnt,",
     subheader: `your ultimate destination for personalized health and nutrition guidance. Founded by Kuba Nowoszyński,
         VitQnt was born out of the pressing need to simplify the complex world
-        of vitamins and micronutrients. We realize that maintaining a balanced
+        of vitamins. We realize that maintaining a balanced
         diet can be overwhelming, which is why we're here to offer you a
         personalized, data-driven approach to your health.`,
     heading1: "Our Purpose",
     paragraph1: `VitQnt's primary mission is to empower you with tailored recommendations
-        on your daily intake of vitamins and micronutrients. We consider
-        individual factors like your age, sex, and weight to ensure that you get
+        on your daily intake of vitamins. We consider
+        individual factors like your age and sex to ensure that you get
         the most accurate and beneficial advice. With VitQnt, your path to a
         healthier lifestyle is just a click away.`,
     heading2: `Features You'll Love`,
-    bolded1: "Daily Vitamin & Micronutrient Recommendation:",
+    bolded1: "Daily Vitamin Recommendation:",
     list1: `no more
           guesswork; get precise daily intake values based on your personal
           parameters.`,
-    bolded2: `Nutrient Information Panel:`,
-    list2: `curious about what each nutrient does? Explore detailed information`,
+    bolded2: `Information Panel:`,
+    list2: `curious about what each vitamin does? Explore detailed information`,
     bolded3: `Dietary Analysis:`,
     list3: `log your daily meals and let our advanced
           algorithms pinpoint the areas where your diet might be lacking.`,
     bolded4: `(Coming soon) Recipe Recommendations:`,
     list4: `filling nutrient gaps has
           never been easier! Get curated recipe suggestions designed to address
-          any deficiencies you might have. Discover the power of personalized
-          nutrition with VitQnt and take a step towards a healthier you, today!`,
+          any deficiencies you might have.`,
     footer: `Discover the power of personalized nutrition with VitQnt and take a step
         towards a healthier you, today!`,
   },
   privacyPolicy: {
-    header: "Privacy Policy for VitQnt",
+    header: "Privacy policy for VitQnt",
     subheader: "Last updated: 6th of September 2023",
     heading1: "Introduction",
     paragraph1: ` Welcome to VitQnt! Your privacy is of utmost importance to us. This
-          Privacy Policy is designed to inform you about the types of
+          privacy policy is designed to inform you about the types of
           information we collect, how we use it, and the measures we take to
           safeguard it. By using our service, you agree to the terms outlined in
-          this Privacy Policy.`,
+          privacy policy.`,
     heading2: "Cookies",
     paragraph2: `To enhance your user experience, we use cookies to keep you signed in
           as you navigate through our platform. Cookies are small data files
@@ -269,11 +270,11 @@ Plus, enjoy recipe suggestions!`,
     paragraph4: `We implement a variety of security measures to maintain the safety of
           your personal information. Access to your user data is restricted to
           authorized personnel only and is stored in secure databases.`,
-    heading5: "Changes to This Privacy Policy",
-    paragraph5: `We reserve the right to update or modify this Privacy Policy at any
+    heading5: "Changes To Privacy Policy",
+    paragraph5: `We reserve the right to update or modify privacy policy at any
           time. The updated version will be posted on this page and will be
           effective immediately upon posting.`,
     heading6: "Contact Us",
-    paragraph6: `If you have any questions about this Privacy Policy, please contact us at`,
+    paragraph6: `If you have any questions about privacy policy, please contact us at`,
   },
 };

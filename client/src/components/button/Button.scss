@@ -9,4 +9,15 @@
   &:hover {
     background-color: rgba($green, 0.7);
   }
+  //primary for home CTA button
+  &.big-font {
+    @include responsive(
+      font-size,
+      (
+        // tablet: center,
+        tablet-large: 1.5em,
+        desktop: 3em
+      )
+    );
+  }
 }
