@@ -129,7 +129,7 @@ const SignIn = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  autoComplete="email"
+                  autoComplete="username email"
                 />
                 <input
                   type="password"

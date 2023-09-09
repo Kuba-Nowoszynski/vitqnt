@@ -6,10 +6,9 @@ import axios from "axios";
 import { englishText } from "./englishText";
 import { polishText } from "./polishText";
 
-const apiUrl =
-  import.meta.env.VITE_ENV === "production"
-    ? "https://vitqnt-backend.onrender.com/api"
-    : "http://localhost:3000/api";
+const apiUrl = import.meta.env.PROD
+  ? "https://vitqnt-backend.onrender.com/api"
+  : "http://localhost:3000/api";
 
 export const UserContext = createContext({
   user: { name: "" },
@@ -31,15 +30,18 @@ export const UserContextProvider = ({ children }) => {
         const response = await axios.get(`${apiUrl}/getuser`, {
           withCredentials: true,
         });
-        const { name, email, sex, age, vitaminIntake } = response.data;
-        setUser({ name, email, sex, age, vitaminIntake });
-        setLoading(false); // Set loading to false once user data is fetched
-        // console.log(name);
+
+        if (response.data.message === "Unauthorized") {
+          return setLoading(false);
+        } else {
+          const { name, email, sex, age, vitaminIntake } = response.data;
+          setUser({ name, email, sex, age, vitaminIntake });
+          setLoading(false); // Set loading to false once user data is fetched
+        }
       } catch (error) {
-        setLoading(false); // Set loading to false on error as well
+        return setLoading(false);
       }
     };
-
     getUserData();
   }, []);
 

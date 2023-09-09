@@ -21,8 +21,7 @@ const About = () => {
           <b>{languageText.bolded1}</b> {languageText.list1}
         </li>
         <li>
-          <b>{languageText.bolded2}</b>
-          {languageText.list2}
+          <b>{languageText.bolded2}</b> {languageText.list2}
         </li>
         <li>
           <b>{languageText.bolded3}</b> {languageText.list3}

@@ -22,6 +22,7 @@ const SignUp = () => {
     user,
     loading,
     apiUrl,
+    language,
     languageText: { signUp: languageText },
   } = useContext(UserContext);
 
@@ -90,7 +91,7 @@ const SignUp = () => {
       e.preventDefault();
       if (isFormValid) {
         try {
-          await axios.post(`${apiUrl}/signup`, formData);
+          await axios.post(`${apiUrl}/signup`, { formData, language });
           playBells();
           hasRun = true;
           setIsAnimated(true);
@@ -130,6 +131,7 @@ const SignUp = () => {
         };
       }
     }
+    e.preventDefault();
   };
 
   return (
@@ -149,6 +151,7 @@ const SignUp = () => {
                 <span className="title">{languageText.header}</span>
                 <span className="subtitle">{languageText.subheader}</span>
                 <div className="form-container d-flex flex-column flex-sm-row rounded-5 my-3">
+                  {" "}
                   <input
                     type="text"
                     placeholder={languageText.placeholderName}
@@ -165,7 +168,7 @@ const SignUp = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    autoComplete="email"
+                    autoComplete="username email"
                   />
                   <input
                     type="password"

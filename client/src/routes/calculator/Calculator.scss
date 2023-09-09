@@ -119,8 +119,40 @@ $vitamin-images-path: "../../assets/vitamins/";
     }
   }
   .response {
-    font-weight: 400;
+    font-weight: 500;
     color: $pastel-blue;
     font-size: 2em;
+  }
+
+  .food-img {
+    max-width: 15em;
+    max-height: 15em;
+    position: absolute;
+    left: 65%;
+    bottom: 0%;
+    animation: pulse 5s infinite;
+    @media (min-width: 1300px) {
+      max-width: 18em;
+      max-height: 18em;
+    }
+    @media (min-width: 1800px) {
+      max-width: 30em;
+      max-height: 30em;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    rotate: -2deg;
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.02);
+    rotate: 2deg;
+    opacity: 1;
   }
 }

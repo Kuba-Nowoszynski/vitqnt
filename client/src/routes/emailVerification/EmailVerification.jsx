@@ -58,11 +58,11 @@ const EmailVerification = () => {
           startTimers();
         } catch (error) {
           console.error("Error verifying email:", error);
+          setHasExpired(true);
         }
       };
 
       if (token && !user) {
-        console.log(token);
         verifyEmail();
       } else if (user) {
         navigate("/");

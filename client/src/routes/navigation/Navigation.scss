@@ -10,6 +10,11 @@
 
 .desktop-navigation {
   font-size: 1.2em;
+  transition: all 0.5s ease;
+  &.scrolled {
+    border-radius: 0 0 5em 5em;
+    background: rgba($pastel-blue, 0.3);
+  }
   .active {
     position: relative;
     scale: 1.2;
@@ -46,7 +51,7 @@
   }
 
   img {
-    max-width: 4rem;
+    max-width: 6em;
     transition: all 0.2s ease;
     &:hover {
       scale: 1.1;
@@ -92,7 +97,7 @@
 }
 
 .mobile-navigation {
-  position: relative;
+  // position: relative;
   z-index: 20;
   * {
     text-transform: uppercase;
@@ -107,7 +112,9 @@
       animation: 0.5s wobble;
     }
   }
-
+  a {
+    transition: all 0.2s ease;
+  }
   .dropdown {
     position: relative;
     display: inline-block;
@@ -149,4 +156,11 @@
 
 .profile-pic {
   cursor: pointer;
+  max-width: 4em !important;
+}
+
+//hide logo and languageswitch for mobile scrolled
+.hide {
+  opacity: 0;
+  cursor: default;
 }

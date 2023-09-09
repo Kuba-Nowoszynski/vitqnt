@@ -2,6 +2,10 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { motion } from "framer-motion";
+
+import useSound from "use-sound";
+import expandSound from "../../assets/sounds/click-sound.wav";
+import closeSound from "../../assets/sounds/tap-sound.wav";
 import "./InfoTile.scss";
 
 const InfoTile = ({
@@ -12,6 +16,8 @@ const InfoTile = ({
   isAnyTileExpanded,
   vitaminImg,
 }) => {
+  const [playExpand] = useSound(expandSound);
+  const [playClose] = useSound(closeSound);
   const {
     languageText: { info: languageText },
   } = useContext(UserContext);
@@ -24,6 +30,7 @@ const InfoTile = ({
   const toggleExpand = (e) => {
     // Check if no tile is currently expanded
     if (!isAnyTileExpanded) {
+      playExpand();
       setIsExpanded(true); // Set the tile as expanded
       setIsAnyTileExpanded(true); // Notify that at least one tile is expanded
       const rect = e.currentTarget.getBoundingClientRect();
@@ -39,6 +46,7 @@ const InfoTile = ({
   };
 
   const closeExpand = (e) => {
+    playClose();
     e.stopPropagation(); // Prevent the click event from affecting other elements outside the tile.
     setIsExpanded(false);
     setIsAnyTileExpanded(false);

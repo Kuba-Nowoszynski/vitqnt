@@ -11,8 +11,8 @@ import { foodImages } from "./foodImages";
 
 import useSound from "use-sound";
 import clickSound from "../../assets/sounds/click-sound.wav";
-import submitSound from "../../assets/sounds/drop-sound.wav";
-import restartSound from "../../assets/sounds/correct-sound.wav";
+import restartSound from "../../assets/sounds/drop-sound.wav";
+import submitSound from "../../assets/sounds/correct-sound.wav";
 
 import "./Deficit.scss";
 
@@ -60,7 +60,7 @@ const Deficit = () => {
     playSubmit();
     setResponse("");
     let result = [];
-    let vitamins = defaultVitaminValues;
+    let vitamins = { ...defaultVitaminValues };
     selectedFood.forEach((foodName) => {
       const food = vitaminFoods.find((food) => food.name === foodName);
       for (const vitamin in food.vitamins) {
