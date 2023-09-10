@@ -14,7 +14,7 @@ const Footer = () => {
   } = useContext(UserContext);
 
   return (
-    <div className="footer rounded-5 rounded-bottom-0  mt-3 py-3 d-flex flex-column flex-lg-row justify-content-evenly align-items-center">
+    <div className="footer rounded-5 rounded-bottom-0  mt-5 py-3 d-flex flex-column flex-lg-row justify-content-evenly align-items-center">
       <NavLink to="/" className="logo">
         <img className="" src={logo} alt="logo" />
       </NavLink>{" "}

@@ -34,6 +34,12 @@ const Deficit = () => {
   const [isAnimationComplete, setIsAnimationComplete] = useState(false); // Track animation completion
   const [animationIndex, setAnimationIndex] = useState(0);
 
+  //ensure that response will reset with after language switch
+  useEffect(() => {
+    setResponse("");
+    setOpinion(null);
+  }, [languageText]);
+
   //redirect if user is not signed in
   useEffect(() => {
     if (!loading && !user) {

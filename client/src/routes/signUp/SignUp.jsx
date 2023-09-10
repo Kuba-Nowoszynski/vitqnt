@@ -103,8 +103,20 @@ const SignUp = () => {
             clearTimeout(timeout);
           };
         } catch (error) {
-          console.error("Error signing up:", error);
-          navigate("/error");
+          setIsFormValid(false);
+          setValidationError(languageText.errorUserExists);
+          playBuzz();
+          setShowErrorPopup(true); // Show error popup when form is not valid
+          setIsDisabled(true); //prevent from clicking button
+          // Set a timeout to hide the error popup after 2 seconds
+          const errorTimeout = setTimeout(() => {
+            setShowErrorPopup(false);
+            setIsDisabled(false);
+          }, 2000);
+
+          return () => {
+            clearTimeout(errorTimeout); // Clear the timeout if the component unmounts or if this effect is re-run
+          };
         }
       } else {
         // Check if any of the input fields are empty
@@ -137,7 +149,7 @@ const SignUp = () => {
   return (
     <>
       {!loading && !user && (
-        <div className="animate__animated animate__bounceIn sign-up-component d-flex justify-content-center align-items-center ">
+        <div className="animate__animated animate__bounceIn sign-component d-flex justify-content-center align-items-center ">
           {!isCreated && (
             <div
               className={`form-box mx-auto  rounded-4 my-3 ${

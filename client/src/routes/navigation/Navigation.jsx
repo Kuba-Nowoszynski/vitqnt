@@ -108,19 +108,24 @@ const Navigation = () => {
     <>
       {/* //prevent flicking navigation on getting user */}
       {!loading && (
-        <div className="container-fluid p-0 m-0 g-0 d-flex flex-column">
+        <div className="wrap-up container-fluid p-0 m-0 mx-auto g-0 d-flex flex-column  ">
           {/* Desktop view */}
           <div
             className={`desktop-navigation  px-5 d-none d-lg-flex justify-content-around align-items-center ${
               scrolling ? "scrolled sticky-top" : ""
             }`}
           >
-            <NavLink to="https://vitqnt.netlify.app/" className="logo">
-              {/* change it in styles or the link after deploy - the point is not to have it underscored */}
+            <NavLink
+              to="/"
+              className="logo"
+              onClick={() => window.scrollTo(0, 0)}
+            >
+              {/* make it work even when on home page */}
               <img src={logoText} alt="logo" />
             </NavLink>{" "}
             <div className="features d-flex gap-5 align-items-center">
-              <NavLink to="/">
+              <NavLink to="/" onClick={() => window.scrollTo(0, 0)}>
+                {/* make it work even when on home page */}
                 <img src={homeIcon} alt="home icon" />
               </NavLink>
               <NavLink to="/calculator">
@@ -277,7 +282,6 @@ const Navigation = () => {
             </div>
           </div>
           <div className="main-content">
-            {" "}
             <Outlet />
           </div>
 

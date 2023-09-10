@@ -125,8 +125,8 @@ $vitamin-images-path: "../../assets/vitamins/";
   }
 
   .food-img {
-    max-width: 15em;
-    max-height: 15em;
+    max-width: 10em;
+    max-height: 10em;
     position: absolute;
     left: 65%;
     bottom: 0%;
@@ -136,8 +136,8 @@ $vitamin-images-path: "../../assets/vitamins/";
       max-height: 18em;
     }
     @media (min-width: 1800px) {
-      max-width: 30em;
-      max-height: 30em;
+      max-width: 25em;
+      max-height: 25em;
     }
   }
 }

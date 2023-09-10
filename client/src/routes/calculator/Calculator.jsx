@@ -30,13 +30,19 @@ const Calculator = () => {
     age: user?.age || 25,
   });
   const [dailyIntake, setDailyIntake] = useState(null);
-  const [response, setResponse] = useState(
-    `${languageText.didYouKnow} ${
-      languageText.vitaminFunFacts[Math.floor(Math.random() * 13)]
-    }`
-  );
+  const [response, setResponse] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [randomFoodImg, setRandomFoodImg] = useState(null);
+
+  //ensure that response will reset with after language switch
+  useEffect(() => {
+    setResponse(
+      `${languageText.didYouKnow} ${
+        languageText.vitaminFunFacts[Math.floor(Math.random() * 13)]
+      }`
+    );
+    setDailyIntake(null);
+  }, [languageText]);
 
   //wait for getting the user data and sets it from context
   useEffect(() => {
@@ -56,8 +62,9 @@ const Calculator = () => {
   };
 
   const handleSubmit = (event) => {
-    playSubmit();
+    console.log(formData);
 
+    playSubmit();
     event.preventDefault();
     setResponse("");
     const { vitamin, sex, age } = formData;
@@ -113,7 +120,6 @@ const Calculator = () => {
               onSubmit={!currentIndex ? handleSubmit : null}
             >
               <div>
-                {" "}
                 <h3 className="text-center py-3">{languageText.choose}</h3>
                 <div className="vitamin-radio d-flex flex-wrap  gap-3 justify-content-center col-xl-8 mx-auto">
                   {vitaminNames.map((name, index) => (
@@ -184,17 +190,12 @@ const Calculator = () => {
               </div>
               <Button
                 text={languageText.button}
-                className="d-block mx-auto mb-md-0"
+                className="d-block mx-auto mb-5 mb-md-0"
                 disabled={currentIndex}
               />
             </form>
-            <div className="col-12 col-md-6 mt-5 mt-md-0">
-              <p className="response  ms-5 mt-4 ">
-                {response ||
-                  `Did you know that ${
-                    vitaminFunFacts[Math.floor(Math.random() * 13)]
-                  }`}
-              </p>
+            <div className="col-12 col-md-6 mt-5 pt-5 pt-md-0 mt-md-0">
+              <p className="response  ms-5 mt-5 ">{response}</p>
               <img
                 src={randomFoodImg}
                 alt="random food img"

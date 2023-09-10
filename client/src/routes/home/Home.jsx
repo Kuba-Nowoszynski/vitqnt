@@ -73,12 +73,12 @@ const Home = () => {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="hero row p-0 g-0 ps-5 align-elements-center ">
-          <h1 className="header col-10 col-lg-7 ">{languageText.header}</h1>
+        <div className="hero row p-0 g-0 ps-2 ps-sm-5 align-elements-center ">
+          <h1 className="header col-10 col-lg-7">{languageText.header}</h1>
           <div className="row p-0 g-0 ">
-            <h3 className="subheader col-8 col-md-6 col-lg-4 my-3 my-xxl-4">
+            <p className="subheader col-11 col-md-6 col-lg-4 my-3 my-xxl-4">
               {languageText.subheader}
-            </h3>
+            </p>
           </div>
           <div className="row p-0 g-0 ps-3 ">
             <Button

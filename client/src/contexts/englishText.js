@@ -160,6 +160,7 @@ Additionally, savor some delectable recipe recommendations!`,
     errorInvalidPassword:
       "Password must be 8+ characters long, with 1 uppercase and 1 special character",
     errorInvalidAge: "Age must be between 0 and 90",
+    errorUserExists: "An account with that email address already exists",
   },
   signIn: {
     header: "Sign In",

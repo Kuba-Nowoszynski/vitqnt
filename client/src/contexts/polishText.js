@@ -36,7 +36,7 @@ export const polishText = {
       "witamina K to Ekspert Krzepnięcia Krwi: pomaga w procesie krzepnięcia krwi i wspiera zdrowe kości.",
     ],
     and: "i",
-    recommendedIntake: "Zalecane dzienne spożycie witaminy",
+    recommendedIntake: "Twoje zalecane dzienne spożycie witaminy",
     amountsTo: "wynosi",
     recommendedSources: "Świetne źródła tej witaminy to",
     vitaminSources: {
@@ -49,6 +49,7 @@ export const polishText = {
       b7: ["orzechy włoskie", "jajka", "słonecznik"],
       b9: ["szpinak", "wątróbka", "soczewica"],
       b12: ["mleko", "jogurt", "sardynki"],
+      a: ["bataty", "marchewki", "jarmuż"],
       d: ["łosoś", "twaróg", "grzyby"],
       e: ["orzechy migdałowe", "szpinak", "olej słonecznikowy"],
       k: ["szpinak", "kapusta", "pomidory"],
@@ -154,6 +155,7 @@ export const polishText = {
     errorInvalidPassword:
       "Hasło musi mieć co najmniej 8 znaków, w tym 1 wielką literę i 1 znak specjalny",
     errorInvalidAge: "Wiek musi być w przedziale od 0 do 90 lat",
+    errorUserExists: "Konto z tym adresem e-mail już istnieje",
   },
   signIn: {
     header: "Logowanie",

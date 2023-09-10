@@ -1,8 +1,9 @@
 @import "../../variables";
-.sign-up-component {
+.sign-component {
+  max-width: 1920px;
 }
 .form-box {
-  min-width: 50%;
+  min-width: 70%;
   background: $pastel-blue;
   overflow: hidden;
   position: relative;

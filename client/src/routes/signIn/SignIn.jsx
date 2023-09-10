@@ -88,9 +88,9 @@ const SignIn = () => {
       } catch (error) {
         setIsFormValid(false);
         const errorMesage =
-          error.response.data.message === "Incorrect password"
+          error.response.data.error === "Incorrect password"
             ? languageText.errorIncorrectPassword
-            : error.response.data.message === "User not found"
+            : error.response.data.error === "User not found"
             ? languageText.errorUserNotFound
             : languageText.errorNotVerified;
         setValidationError(errorMesage);
@@ -112,7 +112,7 @@ const SignIn = () => {
   return (
     <>
       {!loading && !user && (
-        <div className="animate__animated animate__bounceIn sign-in-component d-flex justify-content-center align-items-center ">
+        <div className="animate__animated animate__bounceIn sign-component d-flex justify-content-center align-items-center ">
           <div className="form-box mx-auto  rounded-4 my-3">
             <form
               className="form mx-auto py-4 px-4 text-center d-flex flex-column  gap-3"
