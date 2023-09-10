@@ -14,6 +14,14 @@ exports.signup = async (req, res) => {
   try {
     const { name, email, password, age } = req.body.formData;
     const { language } = req.body;
+
+    // Check if a user with the same email already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res
+        .status(409)
+        .json({ error: "User with this email already exists" });
+    }
     // Email verification
     const verifyToken = crypto.randomBytes(32).toString("hex");
     const verifyTokenExpires = new Date();
@@ -84,12 +92,12 @@ exports.signin = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(401).json({ message: "User not found" });
+      return res.status(401).json({ error: "User not found" });
     }
     if (!user.isVerified) {
       return res
-        .status(401)
-        .json({ message: "Your account has not been verified" });
+        .status(403)
+        .json({ error: "Your account has not been verified" });
     }
     const isValidPassword = await comparePassword(
       req.body.password,
@@ -97,7 +105,7 @@ exports.signin = async (req, res) => {
     );
     if (!isValidPassword) {
       return res.status(401).json({
-        message: "Incorrect password",
+        error: "Incorrect password",
       });
     }
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {

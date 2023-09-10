@@ -88,9 +88,9 @@ const SignIn = () => {
       } catch (error) {
         setIsFormValid(false);
         const errorMesage =
-          error.response.data.message === "Incorrect password"
+          error.response.data.error === "Incorrect password"
             ? languageText.errorIncorrectPassword
-            : error.response.data.message === "User not found"
+            : error.response.data.error === "User not found"
             ? languageText.errorUserNotFound
             : languageText.errorNotVerified;
         setValidationError(errorMesage);

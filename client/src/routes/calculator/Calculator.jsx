@@ -56,8 +56,9 @@ const Calculator = () => {
   };
 
   const handleSubmit = (event) => {
-    playSubmit();
+    console.log(formData);
 
+    playSubmit();
     event.preventDefault();
     setResponse("");
     const { vitamin, sex, age } = formData;
@@ -113,7 +114,6 @@ const Calculator = () => {
               onSubmit={!currentIndex ? handleSubmit : null}
             >
               <div>
-                {" "}
                 <h3 className="text-center py-3">{languageText.choose}</h3>
                 <div className="vitamin-radio d-flex flex-wrap  gap-3 justify-content-center col-xl-8 mx-auto">
                   {vitaminNames.map((name, index) => (

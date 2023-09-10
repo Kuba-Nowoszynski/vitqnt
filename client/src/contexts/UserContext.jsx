@@ -13,16 +13,16 @@ const apiUrl = import.meta.env.PROD
 export const UserContext = createContext({
   user: { name: "" },
   loading: false,
-  language: "english",
+  language: "polish",
 });
 
 export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // Add loading state
   const [language, setLanguage] = useState(
-    localStorage.getItem("selectedLanguage") || "english"
+    localStorage.getItem("selectedLanguage") || "polish"
   );
-  const [languageText, setLanguageText] = useState(englishText);
+  const [languageText, setLanguageText] = useState(polishText);
 
   useEffect(() => {
     const getUserData = async () => {
